@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 [build]
   publish = "publick"
+=======
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+>>>>>>> c0586cab916eb52d158fb049209d57d50bad89ab
 
 [[redirects]]
   from = "/*"
