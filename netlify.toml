@@ -1,3 +1,11 @@
+[build]
+  publish = "publick"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [build.processing]
   skip_processing = false
 [build.processing.css]
