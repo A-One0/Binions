@@ -12,19 +12,25 @@ if (getToken() === null) {
 const navLinks = document.querySelectorAll("nav a");
 const sections = document.querySelectorAll("section");
 
-navLinks.forEach(link => {
-    link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const targetId = link.getAttribute("href").substring(1);
-        const targetSection = document.getElementById(targetId);
-        targetSection.style.display = "block";
+function navigateTo(targetId) {
+    const targetSection = document.getElementById(targetId);
 
-        console.log(`Navigating to section: ${targetId}`);
-        
-        sections.forEach(section => {
-            if (section !== targetSection) {
-                section.style.display = "none";
-            }
-        });
+    if (!targetSection) {
+        console.warn(`Section introuvable : ${targetId}`);
+        return;
+    }
+
+    sections.forEach(section => {
+        section.style.display = section === targetSection
+            ? "block"
+            : "none";
+    });
+}
+
+navLinks.forEach(link => {
+    link.addEventListener("click", event => {
+        //event.preventDefault();
+        const targetId = link.getAttribute("href").substring(1);
+        navigateTo(targetId);
     });
 });
