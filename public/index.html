@@ -7,347 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rye&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
-<style>
- 
-  :root{
-    --felt-dark:   #0a2b1f;
-    --felt:        #103a2a;
-    --felt-light:  #175038;
-    --rail:        #4a2a18;
-    --rail-dark:   #331c0f;
-    --gold:        #c8a24d;
-    --gold-bright: #e6c576;
-    --gold-dim:    #8a723c;
-    --cream:       #efe4c8;
-    --cream-dim:   #cdbf9c;
-    --wine:        #7a2230;
-    --wine-bright: #a53344;
-    --ink:         #061510;
-    --shadow:      rgba(0,0,0,.55);
-  }
- 
-  *{ box-sizing: border-box; }
-  html,body{ margin:0; padding:0; }
- 
-  body{
-    background: var(--ink);
-    color: var(--cream);
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
- 
-  /* felt texture background */
-  .table-bg{
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background:
-      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(230,197,118,.10), transparent 60%),
-      repeating-linear-gradient(45deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 5px),
-      radial-gradient(ellipse 140% 90% at 50% 20%, var(--felt-light) 0%, var(--felt) 45%, var(--felt-dark) 100%);
-  }
- 
-  a{ color: inherit; text-decoration: none; }
- 
-  /* ---------- HEADER ---------- */
- 
-  header{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 18px 40px;
-    background: linear-gradient(180deg, var(--rail) 0%, var(--rail-dark) 100%);
-    border-bottom: 4px solid var(--gold-dim);
-    box-shadow: 0 8px 24px var(--shadow);
-  }
- 
-  .brand{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
- 
-  .brand-mark{
-    width: 40px; height: 40px;
-    border: 3px solid var(--gold);
-    border-radius: 50%;
-    border-bottom-color: transparent;
-    transform: rotate(-20deg);
-    flex-shrink: 0;
-  }
- 
-  .brand-name{
-    font-family: 'Rye', serif;
-    font-size: 30px;
-    letter-spacing: .5px;
-    color: var(--gold-bright);
-    text-shadow: 0 2px 0 var(--ink), 0 0 18px rgba(230,197,118,.25);
-    line-height: 1;
-  }
- 
-  .brand-sub{
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: var(--cream-dim);
-    margin-top: 2px;
-  }
- 
-  nav{
-    display: flex;
-    gap: 6px;
-  }
- 
-  nav a{
-    font-size: 14.5px;
-    font-weight: 600;
-    color: var(--cream-dim);
-    padding: 10px 18px;
-    border-radius: 3px;
-    border: 1px solid transparent;
-    transition: color .15s ease, border-color .15s ease, background .15s ease;
-  }
- 
-  nav a:hover{
-    color: var(--gold-bright);
-    border-color: var(--gold-dim);
-    background: rgba(200,162,77,.08);
-  }
- 
-  .user-cluster{
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
- 
-  .user-id{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 14px 6px 6px;
-    border: 1px solid var(--gold-dim);
-    border-radius: 999px;
-    background: rgba(0,0,0,.2);
-  }
- 
-  .avatar{
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    background: conic-gradient(from 200deg, var(--wine-bright), var(--gold), var(--wine-bright));
-    border: 2px solid var(--cream);
-  }
- 
-  .user-id span{
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--cream);
-  }
- 
-  .chip-count{
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--gold-bright);
-  }
- 
-  .chip-icon{
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 50%, var(--felt-dark) 0 32%, transparent 33%),
-      repeating-conic-gradient(var(--wine-bright) 0deg 30deg, var(--cream) 30deg 60deg);
-    border: 2px solid var(--cream);
-    flex-shrink: 0;
-  }
- 
-  /* ---------- HERO ---------- */
- 
-  main{
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 64px 40px 100px;
-  }
- 
-  .hero{
-    text-align: center;
-    margin-bottom: 68px;
-  }
- 
-  .hero-eyebrow{
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 17px;
-    color: var(--cream-dim);
-    margin: 0 0 6px;
-  }
- 
-  .hero-eyebrow strong{
-    color: var(--gold-bright);
-    font-style: normal;
-  }
- 
-  .hero h1{
-    font-family: 'Rye', serif;
-    font-size: clamp(40px, 6vw, 68px);
-    line-height: 1.05;
-    color: var(--gold-bright);
-    margin: 6px 0 0;
-    text-shadow: 0 3px 0 rgba(0,0,0,.4), 0 0 40px rgba(230,197,118,.15);
-  }
- 
-  .hero-rule{
-    width: 220px;
-    height: 2px;
-    margin: 26px auto 0;
-    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-  }
- 
-  /* ---------- MODE SELECTOR (chips) ---------- */
- 
-  .modes-label{
-    text-align: center;
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: var(--cream-dim);
-    margin-bottom: 28px;
-  }
- 
-  .modes{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    margin-bottom: 52px;
-  }
- 
-  .mode-card{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    padding: 30px 16px 22px;
-    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.18));
-    border: 1px solid rgba(200,162,77,.25);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: border-color .18s ease, transform .18s ease, background .18s ease;
-  }
- 
-  .mode-card:hover,
-  .mode-card.active{
-    border-color: var(--gold);
-    background: linear-gradient(180deg, rgba(200,162,77,.10), rgba(0,0,0,.18));
-    transform: translateY(-3px);
-  }
- 
-  .mode-card.active::after{
-    content: "en cours de sélection";
-    position: absolute;
-    top: -11px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: var(--ink);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .5px;
-    padding: 3px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
- 
-  .mode-chip{
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    border: 3px dashed var(--cream);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Rye', serif;
-    font-size: 15px;
-    color: var(--ink);
-  }
- 
-  .mode-chip.green{ background: radial-gradient(circle, #2f7a52 0 60%, #1f5a3b 61%); color: var(--cream); }
-  .mode-chip.black{ background: radial-gradient(circle, #2b2b2b 0 60%, #141414 61%); color: var(--gold-bright); }
-  .mode-chip.blue{  background: radial-gradient(circle, #2a5f9e 0 60%, #1c447a 61%); color: var(--cream); }
-  .mode-chip.red{   background: radial-gradient(circle, var(--wine-bright) 0 60%, var(--wine) 61%); color: var(--cream); }
- 
-  .mode-name{
-    font-weight: 700;
-    font-size: 15.5px;
-    color: var(--cream);
-  }
- 
-  .mode-desc{
-    font-size: 12.5px;
-    color: var(--cream-dim);
-    text-align: center;
-    line-height: 1.4;
-  }
- 
-  /* ---------- CTA ---------- */
- 
-  .cta-wrap{
-    text-align: center;
-  }
- 
-  .cta{
-    display: inline-block;
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 20px;
-    letter-spacing: .5px;
-    color: var(--ink);
-    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
-    padding: 18px 56px;
-    border-radius: 3px;
-    box-shadow: 0 10px 26px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.4);
-    border: 1px solid var(--gold-dim);
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
- 
-  .cta:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.5);
-  }
- 
-  .cta-note{
-    margin-top: 14px;
-    font-size: 12.5px;
-    color: var(--cream-dim);
-  }
- 
-  /* ---------- FOOTER ---------- */
- 
-  footer{
-    text-align: center;
-    padding: 28px 40px 36px;
-    border-top: 1px solid rgba(200,162,77,.2);
-    font-size: 12px;
-    color: var(--gold-dim);
-    letter-spacing: 1px;
-  }
- 
-  /* ---------- RESPONSIVE ---------- */
- 
-  @media (max-width: 860px){
-    header{ flex-wrap: wrap; padding: 16px 20px; gap: 14px; }
-    nav{ order: 3; width: 100%; justify-content: center; }
-    main{ padding: 44px 20px 70px; }
-    .modes{ grid-template-columns: repeat(2, 1fr); }
-  }
- 
-  @media (max-width: 480px){
-    .modes{ grid-template-columns: 1fr; }
-    .user-cluster{ gap: 10px; }
-    .user-id span{ display: none; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
  
@@ -363,8 +23,9 @@
     </div>
  
     <nav>
-      <a href="#boutique">Boutique</a>
-      <a href="#compte">Mon compte</a>
+      <a href="#">Accueil</a>
+      <a href="#Boutique">Boutique</a>
+      <a href="#Account">Mon compte</a>
     </nav>
  
     <div class="user-cluster">
@@ -379,46 +40,154 @@
     </div>
   </header>
  
-  <main>
-    <section class="hero">
-      <p class="hero-eyebrow">Bienvenue à la table, <strong>PokerFace_88</strong></p>
-      <h1>La partie vous attend</h1>
-      <div class="hero-rule"></div>
-    </section>
- 
-    <p class="modes-label">CHOISISSEZ VOTRE TABLE</p>
- 
-    <div class="modes">
-      <div class="mode-card active">
-        <div class="mode-chip green">25</div>
-        <div class="mode-name">Cash Game</div>
-        <div class="mode-desc">Rejoignez ou quittez la table à tout moment</div>
+  <section id="#">
+    <main>
+      <section class="hero">
+        <p class="hero-eyebrow">Bienvenue à la table, <strong>PokerFace_88</strong></p>
+        <h1>La partie vous attend</h1>
+        <div class="hero-rule"></div>
+      </section>
+  
+      <p class="modes-label">CHOISISSEZ VOTRE TABLE</p>
+  
+      <div class="modes">
+        <div class="mode-card active">
+          <div class="mode-chip green">25</div>
+          <div class="mode-name">Cash Game</div>
+          <div class="mode-desc">Rejoignez ou quittez la table à tout moment</div>
+        </div>
+  
+        <div class="mode-card">
+          <div class="mode-chip black">100</div>
+          <div class="mode-name">Tournoi</div>
+          <div class="mode-desc">Éliminez vos adversaires, montez au classement</div>
+        </div>
+  
+        <div class="mode-card">
+          <div class="mode-chip blue">50</div>
+          <div class="mode-name">Sit & Go</div>
+          <div class="mode-desc">La table démarre dès qu'elle est complète</div>
+        </div>
+  
+        <div class="mode-card">
+          <div class="mode-chip red">5</div>
+          <div class="mode-name">Face à face</div>
+          <div class="mode-desc">Un adversaire, un pot, aucun répit</div>
+        </div>
       </div>
- 
-      <div class="mode-card">
-        <div class="mode-chip black">100</div>
-        <div class="mode-name">Tournoi</div>
-        <div class="mode-desc">Éliminez vos adversaires, montez au classement</div>
+  
+      <div class="cta-wrap">
+        <a href="#jouer" class="cta">Lancer une partie</a>
+        <p class="cta-note">Cash Game sélectionné — modifiable ci-dessus</p>
       </div>
- 
-      <div class="mode-card">
-        <div class="mode-chip blue">50</div>
-        <div class="mode-name">Sit & Go</div>
-        <div class="mode-desc">La table démarre dès qu'elle est complète</div>
+    </main>
+  </section>
+
+  <section id = "Account" style="display: none;">
+    <main>
+      <div class="page-head">
+        <p class="eyebrow">Vos affaires, en règle</p>
+        <h1>Mon compte</h1>
       </div>
- 
-      <div class="mode-card">
-        <div class="mode-chip red">5</div>
-        <div class="mode-name">Face à face</div>
-        <div class="mode-desc">Un adversaire, un pot, aucun répit</div>
+
+      <div class="sections">
+
+        <!-- Pseudo -->
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Pseudo</h2>
+            <div class="status"><span class="dot"></span>Visible des autres joueurs</div>
+          </div>
+
+          <form>
+            <div class="field">
+              <label for="pseudo">Pseudo actuel</label>
+              <input type="text" id="pseudo" name="pseudo" value="PokerFace_88" autocomplete="username">
+              <p class="hint">Modifiable une fois tous les 30 jours.</p>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="save">Enregistrer le pseudo</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Mot de passe -->
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Mot de passe</h2>
+            <div class="status"><span class="dot"></span>Dernière mise à jour il y a 3 mois</div>
+          </div>
+
+          <form>
+            <div class="field">
+              <label for="current-pwd">Mot de passe actuel</label>
+              <input type="password" id="current-pwd" placeholder="••••••••" autocomplete="current-password">
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="new-pwd">Nouveau mot de passe</label>
+                <input type="password" id="new-pwd" placeholder="••••••••" autocomplete="new-password">
+              </div>
+              <div class="field">
+                <label for="confirm-pwd">Confirmer</label>
+                <input type="password" id="confirm-pwd" placeholder="••••••••" autocomplete="new-password">
+              </div>
+            </div>
+            <p class="hint" style="margin:-8px 0 18px;">8 caractères minimum, avec au moins un chiffre.</p>
+
+            <div class="actions">
+              <button type="submit" class="save">Mettre à jour le mot de passe</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Coordonnées bancaires -->
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Coordonnées bancaires</h2>
+            <div class="status"><span class="dot"></span>Carte enregistrée</div>
+          </div>
+
+          <div class="card-visual">
+            <span class="number">•••• •••• •••• 4471</span>
+            <span class="brand-tag">Visa</span>
+          </div>
+
+          <form>
+            <div class="field">
+              <label for="card-name">Nom du titulaire</label>
+              <input type="text" id="card-name" placeholder="Nom et prénom" autocomplete="cc-name">
+            </div>
+
+            <div class="field">
+              <label for="card-number">Numéro de carte</label>
+              <input type="text" id="card-number" placeholder="•••• •••• •••• ••••" inputmode="numeric" autocomplete="cc-number">
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="card-exp">Date d'expiration</label>
+                <input type="text" id="card-exp" placeholder="MM / AA" autocomplete="cc-exp">
+              </div>
+              <div class="field">
+                <label for="card-cvv">CVV</label>
+                <input type="text" id="card-cvv" placeholder="•••" inputmode="numeric" autocomplete="cc-csc">
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="save">Enregistrer la carte</button>
+            </div>
+          </form>
+
+          <a href="#supprimer-carte" class="danger-link">Supprimer cette carte</a>
+        </section>
+
       </div>
-    </div>
- 
-    <div class="cta-wrap">
-      <a href="#jouer" class="cta">Lancer une partie</a>
-      <p class="cta-note">Cash Game sélectionné — modifiable ci-dessus</p>
-    </div>
-  </main>
+    </main>
+  </section>
  
   <footer>
     BINION'S · ÉTABLI EN 1951 · LA MAISON DU CHAMPIONNAT
