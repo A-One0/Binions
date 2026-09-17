@@ -99,6 +99,12 @@ border: 1px solid transparent;
 transition: color .15s ease, border-color .15s ease, background .15s ease;
 }
 
+nav .select{
+    color: var(--gold-bright);
+    border-color: var(--gold-dim);
+    background: rgba(200,162,77,.08);
+}
+
 nav a:hover{
 color: var(--gold-bright);
 border-color: var(--gold-dim);

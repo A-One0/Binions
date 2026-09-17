@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Binion's — Salon de poker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binion's — Salon de poker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
  
@@ -40,158 +40,159 @@
     </div>
   </header>
  
-  <section id="#">
-    <main>
-      <section class="hero">
-        <p class="hero-eyebrow">Bienvenue à la table, <strong>PokerFace_88</strong></p>
-        <h1>La partie vous attend</h1>
-        <div class="hero-rule"></div>
-      </section>
-  
-      <p class="modes-label">CHOISISSEZ VOTRE TABLE</p>
-  
-      <div class="modes">
-        <div class="mode-card active">
-          <div class="mode-chip green">25</div>
-          <div class="mode-name">Cash Game</div>
-          <div class="mode-desc">Rejoignez ou quittez la table à tout moment</div>
-        </div>
-  
-        <div class="mode-card">
-          <div class="mode-chip black">100</div>
-          <div class="mode-name">Tournoi</div>
-          <div class="mode-desc">Éliminez vos adversaires, montez au classement</div>
-        </div>
-  
-        <div class="mode-card">
-          <div class="mode-chip blue">50</div>
-          <div class="mode-name">Sit & Go</div>
-          <div class="mode-desc">La table démarre dès qu'elle est complète</div>
-        </div>
-  
-        <div class="mode-card">
-          <div class="mode-chip red">5</div>
-          <div class="mode-name">Face à face</div>
-          <div class="mode-desc">Un adversaire, un pot, aucun répit</div>
-        </div>
-      </div>
-  
-      <div class="cta-wrap">
-        <a href="#jouer" class="cta">Lancer une partie</a>
-        <p class="cta-note">Cash Game sélectionné — modifiable ci-dessus</p>
-      </div>
-    </main>
-  </section>
-
-  <section id = "Account" style="display: none;">
-    <main>
-      <div class="page-head">
-        <p class="eyebrow">Vos affaires, en règle</p>
-        <h1>Mon compte</h1>
-      </div>
-
-      <div class="sections">
-
-        <!-- Pseudo -->
-        <section class="panel">
-          <div class="panel-head">
-            <h2>Pseudo</h2>
-            <div class="status"><span class="dot"></span>Visible des autres joueurs</div>
-          </div>
-
-          <form>
-            <div class="field">
-              <label for="pseudo">Pseudo actuel</label>
-              <input type="text" id="pseudo" name="pseudo" value="PokerFace_88" autocomplete="username">
-              <p class="hint">Modifiable une fois tous les 30 jours.</p>
-            </div>
-
-            <div class="actions">
-              <button type="submit" class="save">Enregistrer le pseudo</button>
-            </div>
-          </form>
+  <div id="pages">
+    <section id="#">
+      <main>
+        <section class="hero">
+          <p class="hero-eyebrow">Bienvenue à la table, <strong>PokerFace_88</strong></p>
+          <h1>La partie vous attend</h1>
+          <div class="hero-rule"></div>
         </section>
-
-        <!-- Mot de passe -->
-        <section class="panel">
-          <div class="panel-head">
-            <h2>Mot de passe</h2>
-            <div class="status"><span class="dot"></span>Dernière mise à jour il y a 3 mois</div>
+    
+        <p class="modes-label">CHOISISSEZ VOTRE TABLE</p>
+    
+        <div class="modes">
+          <div class="mode-card active">
+            <div class="mode-chip green">25</div>
+            <div class="mode-name">Cash Game</div>
+            <div class="mode-desc">Rejoignez ou quittez la table à tout moment</div>
           </div>
-
-          <form>
-            <div class="field">
-              <label for="current-pwd">Mot de passe actuel</label>
-              <input type="password" id="current-pwd" placeholder="••••••••" autocomplete="current-password">
-            </div>
-
-            <div class="grid-2">
-              <div class="field">
-                <label for="new-pwd">Nouveau mot de passe</label>
-                <input type="password" id="new-pwd" placeholder="••••••••" autocomplete="new-password">
-              </div>
-              <div class="field">
-                <label for="confirm-pwd">Confirmer</label>
-                <input type="password" id="confirm-pwd" placeholder="••••••••" autocomplete="new-password">
-              </div>
-            </div>
-            <p class="hint" style="margin:-8px 0 18px;">8 caractères minimum, avec au moins un chiffre.</p>
-
-            <div class="actions">
-              <button type="submit" class="save">Mettre à jour le mot de passe</button>
-            </div>
-          </form>
-        </section>
-
-        <!-- Coordonnées bancaires -->
-        <section class="panel">
-          <div class="panel-head">
-            <h2>Coordonnées bancaires</h2>
-            <div class="status"><span class="dot"></span>Carte enregistrée</div>
+    
+          <div class="mode-card">
+            <div class="mode-chip black">100</div>
+            <div class="mode-name">Tournoi</div>
+            <div class="mode-desc">Éliminez vos adversaires, montez au classement</div>
           </div>
-
-          <div class="card-visual">
-            <span class="number">•••• •••• •••• 4471</span>
-            <span class="brand-tag">Visa</span>
+    
+          <div class="mode-card">
+            <div class="mode-chip blue">50</div>
+            <div class="mode-name">Sit & Go</div>
+            <div class="mode-desc">La table démarre dès qu'elle est complète</div>
           </div>
+    
+          <div class="mode-card">
+            <div class="mode-chip red">5</div>
+            <div class="mode-name">Face à face</div>
+            <div class="mode-desc">Un adversaire, un pot, aucun répit</div>
+          </div>
+        </div>
+    
+        <div class="cta-wrap">
+          <a href="#jouer" class="cta">Lancer une partie</a>
+          <p class="cta-note">Cash Game sélectionné — modifiable ci-dessus</p>
+        </div>
+      </main>
+    </section>
 
-          <form>
-            <div class="field">
-              <label for="card-name">Nom du titulaire</label>
-              <input type="text" id="card-name" placeholder="Nom et prénom" autocomplete="cc-name">
+    <section id = "Account" style="display: none;">
+      <main>
+        <div class="page-head">
+          <p class="eyebrow">Vos affaires, en règle</p>
+          <h1>Mon compte</h1>
+        </div>
+
+        <div class="sections">
+
+          <!-- Pseudo -->
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Pseudo</h2>
+              <div class="status"><span class="dot"></span>Visible des autres joueurs</div>
             </div>
 
-            <div class="field">
-              <label for="card-number">Numéro de carte</label>
-              <input type="text" id="card-number" placeholder="•••• •••• •••• ••••" inputmode="numeric" autocomplete="cc-number">
-            </div>
-
-            <div class="grid-2">
+            <form>
               <div class="field">
-                <label for="card-exp">Date d'expiration</label>
-                <input type="text" id="card-exp" placeholder="MM / AA" autocomplete="cc-exp">
+                <label for="pseudo">Pseudo actuel</label>
+                <input type="text" id="pseudo" name="pseudo" value="PokerFace_88" autocomplete="username">
+                <p class="hint">Modifiable une fois tous les 30 jours.</p>
               </div>
+
+              <div class="actions">
+                <button type="submit" class="save">Enregistrer le pseudo</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Mot de passe -->
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Mot de passe</h2>
+              <div class="status"><span class="dot"></span>Dernière mise à jour il y a 3 mois</div>
+            </div>
+
+            <form>
               <div class="field">
-                <label for="card-cvv">CVV</label>
-                <input type="text" id="card-cvv" placeholder="•••" inputmode="numeric" autocomplete="cc-csc">
+                <label for="current-pwd">Mot de passe actuel</label>
+                <input type="password" id="current-pwd" placeholder="••••••••" autocomplete="current-password">
               </div>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label for="new-pwd">Nouveau mot de passe</label>
+                  <input type="password" id="new-pwd" placeholder="••••••••" autocomplete="new-password">
+                </div>
+                <div class="field">
+                  <label for="confirm-pwd">Confirmer</label>
+                  <input type="password" id="confirm-pwd" placeholder="••••••••" autocomplete="new-password">
+                </div>
+              </div>
+              <p class="hint" style="margin:-8px 0 18px;">8 caractères minimum, avec au moins un chiffre.</p>
+
+              <div class="actions">
+                <button type="submit" class="save">Mettre à jour le mot de passe</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Coordonnées bancaires -->
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Coordonnées bancaires</h2>
+              <div class="status"><span class="dot"></span>Carte enregistrée</div>
             </div>
 
-            <div class="actions">
-              <button type="submit" class="save">Enregistrer la carte</button>
+            <div class="card-visual">
+              <span class="number">•••• •••• •••• 4471</span>
+              <span class="brand-tag">Visa</span>
             </div>
-          </form>
 
-          <a href="#supprimer-carte" class="danger-link">Supprimer cette carte</a>
-        </section>
+            <form>
+              <div class="field">
+                <label for="card-name">Nom du titulaire</label>
+                <input type="text" id="card-name" placeholder="Nom et prénom" autocomplete="cc-name">
+              </div>
 
-      </div>
-    </main>
-  </section>
- 
+              <div class="field">
+                <label for="card-number">Numéro de carte</label>
+                <input type="text" id="card-number" placeholder="•••• •••• •••• ••••" inputmode="numeric" autocomplete="cc-number">
+              </div>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label for="card-exp">Date d'expiration</label>
+                  <input type="text" id="card-exp" placeholder="MM / AA" autocomplete="cc-exp">
+                </div>
+                <div class="field">
+                  <label for="card-cvv">CVV</label>
+                  <input type="text" id="card-cvv" placeholder="•••" inputmode="numeric" autocomplete="cc-csc">
+                </div>
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="save">Enregistrer la carte</button>
+              </div>
+            </form>
+
+            <a href="#supprimer-carte" class="danger-link">Supprimer cette carte</a>
+          </section>
+
+        </div>
+      </main>
+    </section>
+  </div>
   <footer>
     BINION'S · ÉTABLI EN 1951 · LA MAISON DU CHAMPIONNAT
   </footer>
- 
+  <script src="script.js"></script>
 </body>
 </html>
