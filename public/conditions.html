@@ -52,7 +52,9 @@ a{ color: inherit; text-decoration: none; }
 /* ---------- HEADER (réutilisé tel quel) ---------- */
 
 header{
-position: relative;
+position: sticky;
+top: 0;
+z-index: 100;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -61,6 +63,12 @@ padding: 18px 40px;
 background: linear-gradient(180deg, var(--rail) 0%, var(--rail-dark) 100%);
 border-bottom: 4px solid var(--gold-dim);
 box-shadow: 0 8px 24px var(--shadow);
+transition: transform .35s ease;
+will-change: transform;
+}
+
+header.header-hidden{
+transform: translateY(-100%);
 }
 
 .brand{ display: flex; align-items: center; gap: 12px; }
@@ -112,6 +120,61 @@ nav a:hover{
 color: var(--gold-bright);
 border-color: var(--gold-dim);
 background: rgba(200,162,77,.08);
+}
+
+.user-cluster{
+display: flex;
+align-items: center;
+gap: 18px;
+}
+
+.user-id{
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 6px 14px 6px 6px;
+border: 1px solid var(--gold-dim);
+border-radius: 999px;
+background: rgba(0,0,0,.2);
+cursor: pointer;
+transition: border-color .15s ease, background .15s ease;
+}
+
+.user-id:hover{
+border-color: var(--gold);
+background: rgba(200,162,77,.12);
+}
+
+.avatar{
+width: 30px; height: 30px;
+border-radius: 50%;
+background: conic-gradient(from 200deg, var(--wine-bright), var(--gold), var(--wine-bright));
+border: 2px solid var(--cream);
+}
+
+.user-id span{
+font-size: 14px;
+font-weight: 600;
+color: var(--cream);
+}
+
+.chip-count{
+display: flex;
+align-items: center;
+gap: 9px;
+font-weight: 700;
+font-size: 15px;
+color: var(--gold-bright);
+}
+
+.chip-icon{
+width: 26px; height: 26px;
+border-radius: 50%;
+background:
+    radial-gradient(circle at 50% 50%, var(--felt-dark) 0 32%, transparent 33%),
+    repeating-conic-gradient(var(--wine-bright) 0deg 30deg, var(--cream) 30deg 60deg);
+border: 2px solid var(--cream);
+flex-shrink: 0;
 }
 
 /* ---------- PAGE CONDITIONS D'UTILISATION ---------- */
@@ -351,15 +414,29 @@ footer{
 
 <header>
     <div class="brand">
-        <div class="brand-mark"></div>
+        <div class="brand-mark" aria-hidden="true"></div>
         <div>
-            <div class="brand-name">Binions's</div>
-            <div class="brand-sub">CASINO EN LIGNE</div>
+            <div class="brand-name">Binion's</div>
+            <div class="brand-sub">SALON DE POKER</div>
         </div>
     </div>
+
     <nav>
-        <a href="/createaccount">Accueil</a>
+        <a href="index.html">Accueil</a>
+        <a href="index.html#Boutique">Boutique</a>
+        <a href="index.html#Account">Mon compte</a>
     </nav>
+
+    <div class="user-cluster">
+        <div class="user-id" role="button" tabindex="0" aria-label="Ouvrir Mon compte">
+            <div class="avatar" aria-hidden="true"></div>
+            <span>PokerFace_88</span>
+        </div>
+        <div class="chip-count">
+            <div class="chip-icon" aria-hidden="true"></div>
+            12 480
+        </div>
+    </div>
 </header>
 
 <main class="legal-page">
@@ -560,5 +637,6 @@ footer{
     © 2026 ROYALE CHANCE — JOUER COMPORTE DES RISQUES : ENDETTEMENT, ISOLEMENT, DÉPENDANCE — APPELEZ LE 09&nbsp;74&nbsp;75&nbsp;13&nbsp;13 (APPEL NON SURTAXÉ)
 </footer>
 
+<script src="header.js"></script>
 </body>
 </html>
