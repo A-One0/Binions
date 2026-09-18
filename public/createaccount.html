@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Binion's — Connexion</title>
+<title>Binion's — Créer un compte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rye&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
@@ -148,6 +148,10 @@
     margin-bottom: 7px;
   }
 
+  .field label .req{
+    color: var(--wine-bright);
+  }
+
   .field input{
     width: 100%;
     padding: 12px 14px;
@@ -168,29 +172,32 @@
     background: rgba(0,0,0,.4);
   }
 
-  .row-between{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: -4px 0 22px;
-    font-size: 12.5px;
-  }
-
-  .remember{
-    display: flex;
-    align-items: center;
-    gap: 7px;
+  .field .hint{
+    font-size: 11px;
     color: var(--cream-dim);
+    margin-top: 6px;
   }
 
-  .remember input{ accent-color: var(--gold); }
+  .terms{
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: -4px 0 22px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    line-height: 1.5;
+  }
 
-  .row-between a{
+  .terms input{
+    accent-color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .terms a{
     color: var(--gold-dim);
-    border-bottom: 1px solid transparent;
-    transition: color .15s ease, border-color .15s ease;
+    border-bottom: 1px solid var(--gold-dim);
   }
-  .row-between a:hover{ color: var(--gold-bright); border-color: var(--gold-dim); }
+  .terms a:hover{ color: var(--gold-bright); }
 
   .cta{
     display: block;
@@ -290,45 +297,48 @@
       <div class="brand-sub fall">SALON DE POKER</div>
 
       <div class="panel fall">
-        <h1>Reprenez place à la table</h1>
-        <p class="lede">Connectez-vous pour retrouver votre tapis</p>
+        <h1>Prenez place à la table</h1>
+        <p class="lede">Créez votre compte pour rejoindre la partie</p>
 
-        <form>
-          <div class="field">
-            <label for="pseudo">Pseudo</label>
-            <input type="text" id="pseudo" name="pseudo" placeholder="PokerFace_88" autocomplete="username">
-          </div>
-
-          <div class="field">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password">
-          </div>
-
-          <div class="row-between">
-            <label class="remember">
-              <input type="checkbox" id="remember">
-              Se souvenir de moi
-            </label>
-            <a href="#mdp-oublie">Mot de passe oublié ?</a>
-          </div>
-
-          <button type="submit" class="cta">Se connecter</button>
-        </form>
-
-        <div class="divider">OU</div>
-
-        <a href="#connexion-google" class="google-btn">
+        <a href="#inscription-google" class="google-btn">
           <svg viewBox="0 0 48 48" aria-hidden="true">
             <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.2-.1-2.3-.4-3.5z"/>
             <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 16.3 3 9.6 7.3 6.3 14.7z"/>
             <path fill="#4CAF50" d="M24 45c5.5 0 10.4-1.9 14.3-5.1l-6.6-5.4C29.6 36.4 26.9 37 24 37c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 40.6 16.2 45 24 45z"/>
             <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l6.6 5.4C41.5 35.9 45 30.4 45 24c0-1.2-.1-2.3-.4-3.5z"/>
           </svg>
-          Continuer avec Google
+          S'inscrire avec Google
         </a>
 
+        <div class="divider">OU</div>
+
+        <form>
+          <div class="field">
+            <label for="pseudo">Pseudo <span class="req">*</span></label>
+            <input type="text" id="pseudo" name="pseudo" placeholder="PokerFace_88" autocomplete="username" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Adresse e-mail <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="password">Mot de passe <span class="req">*</span></label>
+            <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password" required minlength="8">
+            <p class="hint">8 caractères minimum</p>
+          </div>
+
+          <label class="terms">
+            <input type="checkbox" id="terms" name="terms" required>
+            J'ai plus de 18 ans et j'accepte les <a href="#conditions">conditions d'utilisation</a>
+          </label>
+
+          <button type="submit" class="cta">Créer mon compte</button>
+        </form>
+
         <p class="signup" style="margin:18px 0 0;">
-          Pas encore de compte ? <a href="#creer-compte">Créez-en un</a>
+          Déjà un compte ? <a href="#connexion">Connectez-vous</a>
         </p>
       </div>
 
