@@ -1,3 +1,13 @@
 {
-    "dbCollectionPlayer" : "plrAccounts"
+    "dbCollectionPlayer" : "plrAccounts",
+    "plrNull" : {
+        "methodConnexion" : "null",
+        "tokenid" : "null",
+        "email" : "null",
+        "password" : "null",
+        "username" : "null",
+        "avatar" : "null",
+        "level" : 0,
+        "jetons" : 0
+    }
 }
