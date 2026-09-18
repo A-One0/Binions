@@ -9,9 +9,11 @@ if (localStorage.getItem('token')) {
 
 }
 
+/*
 const tkt = fetch('/netlify/functions/Mainlogin', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'}
     }
 );
+*/
