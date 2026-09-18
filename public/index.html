@@ -152,8 +152,8 @@
             </div>
 
             <div class="card-visual">
-              <span class="number">•••• •••• •••• 4471</span>
-              <span class="brand-tag">Visa</span>
+              <span class="number" id="card-visual-number">•••• •••• •••• ••••</span>
+              <span class="brand-tag" id="card-visual-brand"></span>
             </div>
 
             <form>
@@ -164,17 +164,17 @@
 
               <div class="field">
                 <label for="card-number">Numéro de carte</label>
-                <input type="text" id="card-number" placeholder="•••• •••• •••• ••••" inputmode="numeric" autocomplete="cc-number">
+                <input type="text" id="card-number" placeholder="•••• •••• •••• ••••" inputmode="numeric" autocomplete="cc-number" maxlength="19" pattern="[0-9]{4}( [0-9]{4}){3}" required>
               </div>
 
               <div class="grid-2">
                 <div class="field">
                   <label for="card-exp">Date d'expiration</label>
-                  <input type="text" id="card-exp" placeholder="MM / AA" autocomplete="cc-exp">
+                  <input type="text" id="card-exp" placeholder="MM / AA" inputmode="numeric" autocomplete="cc-exp" maxlength="5" pattern="(0[1-9]|1[0-2])/[0-9]{2}" required>
                 </div>
                 <div class="field">
                   <label for="card-cvv">CVV</label>
-                  <input type="text" id="card-cvv" placeholder="•••" inputmode="numeric" autocomplete="cc-csc">
+                  <input type="text" id="card-cvv" placeholder="•••" inputmode="numeric" autocomplete="cc-csc" maxlength="3" pattern="[0-9]{3}" required>
                 </div>
               </div>
 
