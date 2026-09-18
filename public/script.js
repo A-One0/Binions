@@ -1,5 +1,5 @@
 const localStorage = window.localStorage;
-/*
+
 function getToken() {
     return localStorage.getItem("tokenConnexion");
 };
@@ -7,7 +7,7 @@ function getToken() {
 if (getToken() === null) {
     window.location.href = "/login";
 }
-    */
+    
 
 // Navigation
 const navLinks = document.querySelectorAll("nav a");

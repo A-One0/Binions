@@ -125,13 +125,6 @@ padding: 6px 14px 6px 6px;
 border: 1px solid var(--gold-dim);
 border-radius: 999px;
 background: rgba(0,0,0,.2);
-cursor: pointer;
-transition: border-color .15s ease, background .15s ease;
-}
-
-.user-id:hover{
-border-color: var(--gold);
-background: rgba(200,162,77,.12);
 }
 
 .avatar{
@@ -595,3 +588,233 @@ main{ padding: 44px 20px 70px; }
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================================
+   PAGES CONNEXION / INSCRIPTION
+   URL : /#connexion, /#inscription
+
+   Ces règles réutilisent les tokens et les classes déjà
+   déclarées plus haut (.panel, .field, .cta, .brand-mark...).
+   Quand une classe existe déjà mais avec des valeurs propres
+   à ces deux pages, elle est reprécisée via un sélecteur
+   scopé (.scene, .card) plutôt que redéfinie globalement,
+   pour ne rien changer aux autres pages.
+   ========================================================= */
+
+.scene{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.card{
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---- animation d'entrée ---- */
+
+.fall{
+    opacity: 0;
+    transform: translateY(-140px);
+    animation: fall .85s cubic-bezier(.22, .9, .3, 1.2) forwards;
+}
+
+@keyframes fall{
+    0%   { opacity: 0; transform: translateY(-140px); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.fall:nth-child(1){ animation-delay: .05s; }
+
+@media (prefers-reduced-motion: reduce){
+    .fall{ animation: none; opacity: 1; transform: none; }
+}
+
+/* ---- en-tête de marque (variante centrée, plus grande) ---- */
+
+.card .brand-mark{
+    width: 46px; height: 46px;
+    margin-bottom: 14px;
+}
+
+.card .brand-name{
+    font-size: 32px;
+    text-shadow: 0 2px 0 rgba(0,0,0,.4), 0 0 18px rgba(230,197,118,.2);
+    animation-delay: .18s;
+}
+
+.card .brand-sub{
+    margin-top: 4px;
+    margin-bottom: 34px;
+    animation-delay: .3s;
+}
+
+/* ---- panneau (variante plus contrastée que .panel de la page compte) ---- */
+
+.scene .panel{
+    width: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.22));
+    border-color: rgba(200,162,77,.28);
+    box-shadow: 0 18px 40px var(--shadow);
+    padding: 34px 30px 28px;
+    animation-delay: .42s;
+}
+
+.panel h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--cream);
+    margin: 0 0 4px;
+    text-align: center;
+}
+
+.panel .lede{
+    text-align: center;
+    font-size: 13px;
+    color: var(--cream-dim);
+    margin: 0 0 26px;
+}
+
+/* ---- ligne "se souvenir / mot de passe oublié" ---- */
+
+.row-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: -4px 0 22px;
+    font-size: 12.5px;
+}
+
+.remember{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--cream-dim);
+}
+
+.remember input{ accent-color: var(--gold); }
+
+.row-between a{
+    color: var(--gold-dim);
+    border-bottom: 1px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+}
+.row-between a:hover{ color: var(--gold-bright); border-color: var(--gold-dim); }
+
+/* ---- bouton principal en pleine largeur (variante de .cta) ---- */
+
+.panel .cta{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 16.5px;
+    padding: 13px 0;
+    border-radius: 4px;
+    box-shadow: 0 10px 22px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.panel .cta:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+/* ---- séparateur "OU" ---- */
+
+.divider{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0;
+    color: var(--cream-dim);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+.divider::before, .divider::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(200,162,77,.2);
+}
+
+/* ---- bouton Google ---- */
+
+.google-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--ink);
+    background: var(--cream);
+    padding: 11px 0;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(0,0,0,.3);
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.google-btn:hover{
+    transform: translateY(-2px);
+    background: #ffffff;
+    box-shadow: 0 12px 22px rgba(0,0,0,.35);
+}
+
+.google-btn svg{ width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ---- liens bas de panneau / mentions ---- */
+
+.signup{
+    text-align: center;
+    font-size: 13px;
+    color: var(--cream-dim);
+    animation-delay: .54s;
+}
+
+.signup a{
+    color: var(--gold-bright);
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold-dim);
+}
+
+.signup.link-row{ margin: 18px 0 0; }
+.signup.copyright{ margin-top: 22px; }
+
+/* ---- astérisque obligatoire + case conditions (page inscription) ---- */
+
+.field label .req{
+    color: var(--wine-bright);
+}
+
+.terms{
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: -4px 0 22px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    line-height: 1.5;
+}
+
+.terms input{
+    accent-color: var(--gold);
+    margin-top: 2px;
+}
+
+.terms a{
+    color: var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+}
+.terms a:hover{ color: var(--gold-bright); }
