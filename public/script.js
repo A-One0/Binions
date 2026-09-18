@@ -103,9 +103,39 @@ function resetAllForms() {
 
 window.addEventListener("pageshow", resetAllForms);
 
+// Clic sur le cluster utilisateur (avatar + pseudo) -> redirection vers "Mon compte"
 const userIdCluster = document.querySelector(".user-id");
 if (userIdCluster) {
     userIdCluster.addEventListener("click", () => {
         window.location.hash = "#Account";
+    });
+}
+
+// Header qui se masque en scrollant vers le bas et réapparaît en remontant
+const header = document.querySelector("header");
+if (header) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function handleHeaderScroll() {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+            // on descend et on a dépassé la hauteur du header -> on le masque
+            header.classList.add("header-hidden");
+        } else if (currentScrollY < lastScrollY) {
+            // on remonte -> on le réaffiche
+            header.classList.remove("header-hidden");
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            window.requestAnimationFrame(handleHeaderScroll);
+            ticking = true;
+        }
     });
 }
