@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conditions d'utilisation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Fraunces:ital,wght@0,400;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+    --felt-dark:   #0a2b1f;
+    --felt:        #103a2a;
+    --felt-light:  #175038;
+    --rail:        #4a2a18;
+    --rail-dark:   #331c0f;
+    --gold:        #c8a24d;
+    --gold-bright: #e6c576;
+    --gold-dim:    #8a723c;
+    --cream:       #efe4c8;
+    --cream-dim:   #cdbf9c;
+    --wine:        #7a2230;
+    --wine-bright: #a53344;
+    --ink:         #061510;
+    --shadow:      rgba(0,0,0,.55);
+    --green-ok:    #4fae74;
+}
+
+*{ box-sizing: border-box; }
+html,body{ margin:0; padding:0; }
+
+body{
+background: var(--ink);
+color: var(--cream);
+font-family: 'Inter', sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+.table-bg{
+position: fixed;
+inset: 0;
+z-index: -1;
+background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(230,197,118,.10), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 5px),
+    radial-gradient(ellipse 140% 90% at 50% 20%, var(--felt-light) 0%, var(--felt) 45%, var(--felt-dark) 100%);
+}
+
+a{ color: inherit; text-decoration: none; }
+
+/* ---------- HEADER (réutilisé tel quel) ---------- */
+
+header{
+position: relative;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 24px;
+padding: 18px 40px;
+background: linear-gradient(180deg, var(--rail) 0%, var(--rail-dark) 100%);
+border-bottom: 4px solid var(--gold-dim);
+box-shadow: 0 8px 24px var(--shadow);
+}
+
+.brand{ display: flex; align-items: center; gap: 12px; }
+
+.brand-mark{
+width: 40px; height: 40px;
+border: 3px solid var(--gold);
+border-radius: 50%;
+border-bottom-color: transparent;
+transform: rotate(-20deg);
+flex-shrink: 0;
+}
+
+.brand-name{
+font-family: 'Rye', serif;
+font-size: 30px;
+letter-spacing: .5px;
+color: var(--gold-bright);
+text-shadow: 0 2px 0 var(--ink), 0 0 18px rgba(230,197,118,.25);
+line-height: 1;
+}
+
+.brand-sub{
+font-size: 10px;
+letter-spacing: 3px;
+color: var(--cream-dim);
+margin-top: 2px;
+}
+
+nav{ display: flex; gap: 6px; }
+
+nav a{
+font-size: 14.5px;
+font-weight: 600;
+color: var(--cream-dim);
+padding: 10px 18px;
+border-radius: 3px;
+border: 1px solid transparent;
+transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+
+nav .select{
+    color: var(--gold-bright);
+    border-color: var(--gold-dim);
+    background: rgba(200,162,77,.08);
+}
+
+nav a:hover{
+color: var(--gold-bright);
+border-color: var(--gold-dim);
+background: rgba(200,162,77,.08);
+}
+
+/* ---------- PAGE CONDITIONS D'UTILISATION ---------- */
+
+.legal-page{
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 40px 100px;
+}
+
+.page-head{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-head .eyebrow{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--cream-dim);
+    margin: 0 0 4px;
+}
+
+.page-head h1{
+    font-family: 'Rye', serif;
+    font-size: clamp(32px, 5vw, 46px);
+    color: var(--gold-bright);
+    margin: 4px 0 0;
+    text-shadow: 0 3px 0 rgba(0,0,0,.4);
+}
+
+.page-head .updated{
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--cream-dim);
+}
+
+.legal-intro{
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.2));
+    border: 1px solid rgba(165,51,68,.4);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 32px 0 40px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--cream);
+    box-shadow: 0 10px 26px var(--shadow);
+}
+
+.legal-intro strong{ color: var(--wine-bright); }
+
+.legal-toc{
+    background: rgba(0,0,0,.2);
+    border: 1px solid rgba(200,162,77,.2);
+    border-radius: 6px;
+    padding: 22px 26px;
+    margin-bottom: 40px;
+}
+
+.legal-toc h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--gold-dim);
+    margin: 0 0 14px;
+}
+
+.legal-toc ol{
+    columns: 2;
+    column-gap: 28px;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13.5px;
+    color: var(--cream-dim);
+    line-height: 2;
+}
+
+.legal-toc a:hover{ color: var(--gold-bright); }
+
+.sections{
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.panel{
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.2));
+    border: 1px solid rgba(200,162,77,.25);
+    border-radius: 6px;
+    padding: 28px 30px 26px;
+    box-shadow: 0 10px 26px var(--shadow);
+    scroll-margin-top: 24px;
+}
+
+.panel-head{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(200,162,77,.18);
+}
+
+.panel-head .num{
+    font-family: 'Rye', serif;
+    font-size: 20px;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+}
+
+.panel-head h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--cream);
+    margin: 0;
+}
+
+.panel p{
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    margin: 0 0 14px;
+}
+
+.panel p:last-child{ margin-bottom: 0; }
+
+.panel ul{
+    margin: 0 0 14px;
+    padding-left: 20px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--cream-dim);
+}
+
+.panel ul:last-child{ margin-bottom: 0; }
+
+.panel ul li{ margin-bottom: 6px; }
+
+.panel strong{ color: var(--cream); }
+
+.age-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    margin-bottom: 16px;
+    background: rgba(165,51,68,.12);
+    border: 1px solid var(--wine-bright);
+    border-radius: 999px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--wine-bright);
+}
+
+.age-badge .chip-icon{
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 50%, var(--felt-dark) 0 32%, transparent 33%),
+        repeating-conic-gradient(var(--wine-bright) 0deg 30deg, var(--cream) 30deg 60deg);
+    border: 2px solid var(--cream);
+    flex-shrink: 0;
+}
+
+.help-strip{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+.help-strip .help-item{
+    flex: 1 1 220px;
+    background: rgba(0,0,0,.25);
+    border: 1px solid rgba(200,162,77,.2);
+    border-radius: 4px;
+    padding: 14px 16px;
+}
+
+.help-strip .help-item .name{
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--gold-bright);
+    margin-bottom: 3px;
+}
+
+.help-strip .help-item .detail{
+    font-size: 12.5px;
+    color: var(--cream-dim);
+}
+
+.contact-block{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-size: 14px;
+}
+
+.contact-block div{ min-width: 200px; }
+
+.contact-block .label{
+    font-size: 11.5px;
+    letter-spacing: .5px;
+    color: var(--gold-dim);
+    margin-bottom: 5px;
+}
+
+.contact-block .value{ color: var(--cream); }
+
+footer{
+    text-align: center;
+    padding: 28px 40px 36px;
+    border-top: 1px solid rgba(200,162,77,.2);
+    font-size: 12px;
+    color: var(--gold-dim);
+    letter-spacing: 1px;
+}
+
+@media (max-width: 860px){
+    header{ flex-wrap: wrap; padding: 16px 20px; gap: 14px; }
+    nav{ order: 3; width: 100%; justify-content: center; }
+    .legal-page{ padding: 40px 20px 70px; }
+    .legal-toc ol{ columns: 1; }
+}
+
+@media (max-width: 480px){
+    .panel{ padding: 22px 18px 20px; }
+    .help-strip{ flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="table-bg"></div>
+
+<header>
+    <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+            <div class="brand-name">Royale Chance</div>
+            <div class="brand-sub">CASINO EN LIGNE</div>
+        </div>
+    </div>
+    <nav>
+        <a href="/#accueil">Accueil</a>
+        <a href="/#jeux">Jeux</a>
+        <a href="/#compte">Mon compte</a>
+        <a href="/#conditions" class="select">Conditions</a>
+    </nav>
+</header>
+
+<main class="legal-page">
+
+    <div class="page-head">
+        <p class="eyebrow">Document contractuel</p>
+        <h1>Conditions d'utilisation</h1>
+        <p class="updated">Version en vigueur au 18 septembre 2026 — remplace toute version antérieure</p>
+    </div>
+
+    <div class="legal-intro">
+        <strong>Avant de continuer :</strong> ce texte est un modèle de structure à adapter. Il ne constitue pas un conseil juridique. En France, l'exploitation de jeux d'argent en ligne est une activité réglementée soumise à l'agrément de l'Autorité Nationale des Jeux (ANJ) ; selon votre marché et le type de jeux proposés (paris, poker, casino), des obligations légales spécifiques s'appliquent et ces conditions doivent être validées par un juriste avant publication.
+    </div>
+
+    <div class="legal-toc">
+        <h2>SOMMAIRE</h2>
+        <ol>
+            <li><a href="#objet">Objet du document</a></li>
+            <li><a href="#acceptation">Acceptation des conditions</a></li>
+            <li><a href="#eligibilite">Éligibilité et âge légal</a></li>
+            <li><a href="#compte">Compte joueur</a></li>
+            <li><a href="#depots">Dépôts et retraits</a></li>
+            <li><a href="#bonus">Bonus et promotions</a></li>
+            <li><a href="#jeu-responsable">Jeu responsable</a></li>
+            <li><a href="#conduite">Usage interdit et fraude</a></li>
+            <li><a href="#propriete">Propriété intellectuelle</a></li>
+            <li><a href="#responsabilite">Limitation de responsabilité</a></li>
+            <li><a href="#suspension">Suspension et clôture de compte</a></li>
+            <li><a href="#droit">Droit applicable et litiges</a></li>
+            <li><a href="#modification">Modification des conditions</a></li>
+            <li><a href="#contact">Nous contacter</a></li>
+        </ol>
+    </div>
+
+    <div class="sections">
+
+        <section class="panel" id="objet">
+            <div class="panel-head">
+                <span class="num">01</span>
+                <h2>Objet du document</h2>
+            </div>
+            <p>Les présentes conditions d'utilisation (« les Conditions ») régissent l'accès et l'usage du site Royale Chance (« le Site »), exploité par [Raison sociale de la société], immatriculée sous le numéro [SIRET/RCS], dont le siège social est situé [adresse], agréée par l'Autorité Nationale des Jeux sous le numéro [numéro d'agrément].</p>
+            <p>Elles s'appliquent à toute personne créant un compte ou utilisant les services proposés sur le Site (« l'Utilisateur »), qu'il s'agisse des jeux, des services de paiement ou de tout contenu associé.</p>
+        </section>
+
+        <section class="panel" id="acceptation">
+            <div class="panel-head">
+                <span class="num">02</span>
+                <h2>Acceptation des conditions</h2>
+            </div>
+            <p>La création d'un compte sur le Site suppose la lecture, la compréhension et l'acceptation pleine et entière des présentes Conditions, ainsi que de la Politique de confidentialité et de la Charte du jeu responsable qui en font partie intégrante.</p>
+            <p>Si l'Utilisateur n'accepte pas tout ou partie des Conditions, il doit s'abstenir d'utiliser le Site.</p>
+        </section>
+
+        <section class="panel" id="eligibilite">
+            <div class="panel-head">
+                <span class="num">03</span>
+                <h2>Éligibilité et âge légal</h2>
+            </div>
+            <div class="age-badge">
+                <span class="chip-icon"></span>
+                Accès strictement réservé aux 18 ans et plus
+            </div>
+            <p>L'accès au Site et la participation aux jeux d'argent sont strictement interdits aux mineurs. L'Utilisateur doit être âgé d'au moins 18 ans, disposer de la pleine capacité juridique et ne pas faire l'objet d'une mesure d'interdiction de jeu (auto-exclusion ou interdiction judiciaire/administrative, notamment le fichier des interdits de jeux).</p>
+            <p>Le Site se réserve le droit de demander à tout moment des justificatifs d'identité et d'âge, et de suspendre un compte dans l'attente de leur vérification.</p>
+        </section>
+
+        <section class="panel" id="compte">
+            <div class="panel-head">
+                <span class="num">04</span>
+                <h2>Compte joueur</h2>
+            </div>
+            <p>Chaque Utilisateur ne peut détenir qu'un seul compte joueur, personnel et incessible. Les informations fournies lors de l'inscription doivent être exactes, complètes et tenues à jour.</p>
+            <ul>
+                <li>L'Utilisateur est seul responsable de la confidentialité de ses identifiants de connexion.</li>
+                <li>Toute activité réalisée depuis le compte est présumée effectuée par son titulaire.</li>
+                <li>La création de comptes multiples par une même personne entraîne leur clôture et l'annulation des gains associés.</li>
+            </ul>
+        </section>
+
+        <section class="panel" id="depots">
+            <div class="panel-head">
+                <span class="num">05</span>
+                <h2>Dépôts et retraits</h2>
+            </div>
+            <p>Les dépôts sont crédités sur le compte joueur selon les moyens de paiement proposés sur le Site. Les fonds déposés ne peuvent être utilisés qu'à des fins de jeu sur le Site, à l'exclusion de tout autre usage.</p>
+            <p>Les demandes de retrait sont traitées après vérification d'identité conformément à la réglementation relative à la lutte contre le blanchiment de capitaux et le financement du terrorisme (LCB-FT). Des délais de traitement et des limites peuvent s'appliquer et sont précisés dans la section dédiée du Site.</p>
+        </section>
+
+        <section class="panel" id="bonus">
+            <div class="panel-head">
+                <span class="num">06</span>
+                <h2>Bonus et promotions</h2>
+            </div>
+            <p>Les bonus, tours gratuits et autres promotions sont soumis à des conditions particulières (montant, exigences de mise, délai de validité) communiquées lors de leur activation. Le Site se réserve le droit de refuser ou d'annuler une promotion en cas d'usage abusif, de fraude ou de non-respect des conditions associées.</p>
+        </section>
+
+        <section class="panel" id="jeu-responsable">
+            <div class="panel-head">
+                <span class="num">07</span>
+                <h2>Jeu responsable</h2>
+            </div>
+            <p>Le Site encourage une pratique de jeu maîtrisée et met à disposition des outils permettant à l'Utilisateur de garder le contrôle :</p>
+            <div class="help-strip">
+                <div class="help-item">
+                    <div class="name">Limites de dépôt</div>
+                    <div class="detail">Plafonds journaliers, hebdomadaires ou mensuels modifiables depuis le compte</div>
+                </div>
+                <div class="help-item">
+                    <div class="name">Auto-exclusion</div>
+                    <div class="detail">Pause temporaire ou fermeture définitive du compte, sur simple demande</div>
+                </div>
+                <div class="help-item">
+                    <div class="name">Modération du temps</div>
+                    <div class="detail">Rappels de durée de session et compteur de temps de jeu</div>
+                </div>
+            </div>
+            <p style="margin-top:16px;">Le jeu excessif peut avoir des conséquences graves. En cas de difficulté, un soutien est disponible auprès de <strong>Joueurs Info Service</strong> (09 74 75 13 13, appel non surtaxé, service anonyme et gratuit) ou sur joueurs-info-service.fr.</p>
+        </section>
+
+        <section class="panel" id="conduite">
+            <div class="panel-head">
+                <span class="num">08</span>
+                <h2>Usage interdit et fraude</h2>
+            </div>
+            <p>Il est interdit d'utiliser le Site à des fins de fraude, de blanchiment de capitaux, de manipulation de résultats, d'usage de logiciels tiers non autorisés (bots, scripts) ou de toute pratique visant à contourner les règles des jeux ou les présentes Conditions.</p>
+            <p>Toute activité suspecte peut entraîner la suspension immédiate du compte, le gel des fonds concernés et un signalement aux autorités compétentes.</p>
+        </section>
+
+        <section class="panel" id="propriete">
+            <div class="panel-head">
+                <span class="num">09</span>
+                <h2>Propriété intellectuelle</h2>
+            </div>
+            <p>L'ensemble des éléments du Site (marque, logo, interface, graphismes, jeux, textes) est protégé par le droit de la propriété intellectuelle et demeure la propriété exclusive de [Raison sociale] ou de ses concédants. Toute reproduction ou exploitation non autorisée est interdite.</p>
+        </section>
+
+        <section class="panel" id="responsabilite">
+            <div class="panel-head">
+                <span class="num">10</span>
+                <h2>Limitation de responsabilité</h2>
+            </div>
+            <p>Le Site met en œuvre les moyens raisonnables pour assurer la continuité et la sécurité de ses services, sans garantie d'absence d'interruption, d'erreur technique ou de dysfonctionnement des jeux.</p>
+            <p>La responsabilité de l'exploitant ne saurait être engagée en cas de perte résultant d'une mauvaise utilisation du Site par l'Utilisateur, d'une interruption due à un cas de force majeure, ou d'un problème lié au matériel ou à la connexion de l'Utilisateur.</p>
+        </section>
+
+        <section class="panel" id="suspension">
+            <div class="panel-head">
+                <span class="num">11</span>
+                <h2>Suspension et clôture de compte</h2>
+            </div>
+            <p>L'Utilisateur peut demander la clôture de son compte à tout moment. Le Site peut suspendre ou clôturer un compte en cas de non-respect des Conditions, de soupçon de fraude, de décision légale ou réglementaire, ou à la demande des autorités compétentes.</p>
+        </section>
+
+        <section class="panel" id="droit">
+            <div class="panel-head">
+                <span class="num">12</span>
+                <h2>Droit applicable et litiges</h2>
+            </div>
+            <p>Les présentes Conditions sont soumises au droit [pays/juridiction]. En cas de litige, l'Utilisateur peut recourir à une procédure de médiation avant toute action judiciaire, selon les modalités précisées sur le Site. À défaut d'accord amiable, les tribunaux compétents seront ceux du ressort de [ville/juridiction].</p>
+        </section>
+
+        <section class="panel" id="modification">
+            <div class="panel-head">
+                <span class="num">13</span>
+                <h2>Modification des conditions</h2>
+            </div>
+            <p>Le Site se réserve le droit de modifier les présentes Conditions à tout moment, notamment pour se conformer à une évolution réglementaire. Toute modification substantielle sera communiquée à l'Utilisateur et prendra effet à la date indiquée sur le Site.</p>
+        </section>
+
+        <section class="panel" id="contact">
+            <div class="panel-head">
+                <span class="num">14</span>
+                <h2>Nous contacter</h2>
+            </div>
+            <p>Pour toute question relative aux présentes Conditions :</p>
+            <div class="contact-block">
+                <div>
+                    <div class="label">SERVICE CLIENT</div>
+                    <div class="value">support@royalechance.fr</div>
+                </div>
+                <div>
+                    <div class="label">COURRIER</div>
+                    <div class="value">[Raison sociale] — [Adresse complète]</div>
+                </div>
+                <div>
+                    <div class="label">ASSISTANCE JEU RESPONSABLE</div>
+                    <div class="value">Joueurs Info Service — 09 74 75 13 13</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 ROYALE CHANCE — JOUER COMPORTE DES RISQUES : ENDETTEMENT, ISOLEMENT, DÉPENDANCE — APPELEZ LE 09&nbsp;74&nbsp;75&nbsp;13&nbsp;13 (APPEL NON SURTAXÉ)
+</footer>
+
+</body>
+</html>
