@@ -93,3 +93,17 @@ cardExpirationInput.addEventListener("input", () => {
 cardCvvInput.addEventListener("input", () => {
     cardCvvInput.value = cardCvvInput.value.replace(/\D/g, "").slice(0, 3);
 });
+
+function resetAllForms() {
+    document.querySelectorAll("form").forEach(form => form.reset());
+    updateCardVisual();
+}
+
+window.addEventListener("pageshow", resetAllForms);
+
+const userIdCluster = document.querySelector(".user-id");
+if (userIdCluster) {
+    userIdCluster.addEventListener("click", () => {
+        window.location.hash = "#Account";
+    });
+}

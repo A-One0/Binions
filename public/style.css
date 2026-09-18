@@ -125,6 +125,13 @@ padding: 6px 14px 6px 6px;
 border: 1px solid var(--gold-dim);
 border-radius: 999px;
 background: rgba(0,0,0,.2);
+cursor: pointer;
+transition: border-color .15s ease, background .15s ease;
+}
+
+.user-id:hover{
+border-color: var(--gold);
+background: rgba(200,162,77,.12);
 }
 
 .avatar{
