@@ -1,113 +1,87 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut
-} from "firebase/auth";
-import {
-  getDatabase,
-  ref,
-  set,
-  get,
-  update,
-  remove
-} from "firebase/database";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// src/server/db.js
+import admin from "firebase-admin";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyA6DgCAyNNSjDkHRnvbl9-l-cmI9-ha9Yk",
-  authDomain: "site-80.firebaseapp.com",
-  databaseURL: "https://site-80-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "site-80",
-  storageBucket: "site-80.firebasestorage.app",
-  messagingSenderId: "832197308909",
-  appId: "1:832197308909:web:02863bd3d9b1bc502737e4",
-  measurementId: "G-2JKRNQGL2D"
-};
+// Initialise firebase-admin une seule fois (évite les ré-initialisations
+// à chaque invocation à froid de la fonction)
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(
+      JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+    ),
+    databaseURL: "https://site-80-default-rtdb.europe-west1.firebasedatabase.app"
+  });
+}
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = admin.database();
+const auth = admin.auth();
 
-const db = getDatabase(app);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+// --- Auth : vérification de token (remplace signInWithGoogle côté serveur) ---
+
+// Le client s'authentifie lui-même avec Firebase Auth (signInWithPopup côté navigateur),
+// puis envoie son idToken à la fonction Netlify, qui appelle ceci pour le vérifier.
+function verifyIdToken(idToken) {
+  return auth.verifyIdToken(idToken);
+}
 
 function createUser(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  return auth.createUser({ email, password });
 }
 
-function signInUser(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+function getUser(uid) {
+  return auth.getUser(uid);
 }
 
-function signInWithGoogle() {
-    return signInWithPopup(auth, provider);
+function deleteUser(uid) {
+  return auth.deleteUser(uid);
 }
 
-function signOutUser() {
-    return signOut(auth);
-}
+// --- Realtime Database : collections ---
 
-function createcollection(collectionName, data) {
-    const collectionRef = ref(db, collectionName);
-    return set(collectionRef, data);
+function createCollection(collectionName, data) {
+  return db.ref(collectionName).set(data);
 }
 
 function readCollection(collectionName) {
-    const collectionRef = ref(db, collectionName);
-    return get(collectionRef);
-}   
+  return db.ref(collectionName).once("value").then(snap => snap.val());
+}
 
 function updateCollection(collectionName, data) {
-    const collectionRef = ref(db, collectionName);
-    return update(collectionRef, data);
+  return db.ref(collectionName).update(data);
 }
 
 function deleteCollection(collectionName) {
-    const collectionRef = ref(db, collectionName);
-    return remove(collectionRef);
+  return db.ref(collectionName).remove();
 }
 
+// --- Realtime Database : documents ---
+
 function createDocument(collectionName, documentId, data) {
-    const documentRef = ref(db, `${collectionName}/${documentId}`);
-    return set(documentRef, data);
+  return db.ref(`${collectionName}/${documentId}`).set(data);
 }
 
 function readDocument(collectionName, documentId) {
-    const documentRef = ref(db, `${collectionName}/${documentId}`);
-    return get(documentRef);
+  return db.ref(`${collectionName}/${documentId}`).once("value").then(snap => snap.val());
 }
 
 function updateDocument(collectionName, documentId, data) {
-    const documentRef = ref(db, `${collectionName}/${documentId}`);
-    return update(documentRef, data);
+  return db.ref(`${collectionName}/${documentId}`).update(data);
 }
 
 function deleteDocument(collectionName, documentId) {
-    const documentRef = ref(db, `${collectionName}/${documentId}`);
-    return remove(documentRef);
+  return db.ref(`${collectionName}/${documentId}`).remove();
 }
 
 export {
-    createUser,
-    signInUser,
-    signInWithGoogle,
-    signOutUser,
-    createcollection,
-    readCollection,
-    updateCollection,
-    deleteCollection,
-    createDocument,
-    readDocument,
-    updateDocument,
-    deleteDocument
+  verifyIdToken,
+  createUser,
+  getUser,
+  deleteUser,
+  createCollection,
+  readCollection,
+  updateCollection,
+  deleteCollection,
+  createDocument,
+  readDocument,
+  updateDocument,
+  deleteDocument
 };
