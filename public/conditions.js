@@ -10,4 +10,5 @@ if (backLink) {
     backLink.textContent = origin === "index.html"
         ? "Revenir à l'accueil"
         : "Revenir à la création du compte";
+    backLink.hidden = false;
 }

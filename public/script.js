@@ -43,6 +43,33 @@ window.addEventListener("hashchange", navigate);
 
 navigate();
 
+// Sélection du mode de jeu
+const modeCards = document.querySelectorAll(".mode-card");
+const ctaNote = document.querySelector(".cta-note");
+
+function selectMode(card) {
+    modeCards.forEach(modeCard => {
+        const isSelected = modeCard === card;
+        modeCard.classList.toggle("active", isSelected);
+        modeCard.setAttribute("aria-selected", String(isSelected));
+    });
+
+    if (ctaNote) {
+        const modeName = card.querySelector(".mode-name").textContent;
+        ctaNote.textContent = `${modeName} sélectionné — modifiable ci-dessus`;
+    }
+}
+
+modeCards.forEach(card => {
+    card.addEventListener("click", () => selectMode(card));
+    card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectMode(card);
+        }
+    });
+});
+
 // formulaire carte
 const cardNumberInput = document.getElementById("card-number");
 const cardExpirationInput = document.getElementById("card-exp");
