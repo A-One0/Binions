@@ -10,7 +10,7 @@ if (localStorage.getItem('token')) {
 }
 
 document.getElementsByClassName("google-btn")[0].addEventListener("click", async function() {
-  const response = await fetch('/.netlify/functions/loginwithgoogle', {
+  const response = await fetch('/netlify/functions/loginwithgoogle', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
