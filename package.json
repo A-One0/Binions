@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'no build needed'"
+    "build": "vite build"
   },
   "dependencies": {
     "firebase": "^10.14.1",
