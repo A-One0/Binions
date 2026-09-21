@@ -122,26 +122,28 @@ function updateCardVisual() {
     cardVisualBrand.textContent = detectCardBrand(digits);
 }
 
-cardNumberInput.addEventListener("input", () => {
-    const digits = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
-    cardNumberInput.value = digits.replace(/(\d{4})(?=\d)/g, "$1 ");
-    updateCardVisual();
-});
+if (cardNumberInput && cardExpirationInput && cardCvvInput && cardVisualNumber && cardVisualBrand) {
+    cardNumberInput.addEventListener("input", () => {
+        const digits = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
+        cardNumberInput.value = digits.replace(/(\d{4})(?=\d)/g, "$1 ");
+        updateCardVisual();
+    });
 
-cardExpirationInput.addEventListener("input", () => {
-    const digits = cardExpirationInput.value.replace(/\D/g, "").slice(0, 4);
-    cardExpirationInput.value = digits.length >= 2
-        ? `${digits.slice(0, 2)}/${digits.slice(2)}`
-        : digits;
-});
+    cardExpirationInput.addEventListener("input", () => {
+        const digits = cardExpirationInput.value.replace(/\D/g, "").slice(0, 4);
+        cardExpirationInput.value = digits.length >= 2
+            ? `${digits.slice(0, 2)}/${digits.slice(2)}`
+            : digits;
+    });
 
-cardCvvInput.addEventListener("input", () => {
-    cardCvvInput.value = cardCvvInput.value.replace(/\D/g, "").slice(0, 3);
-});
+    cardCvvInput.addEventListener("input", () => {
+        cardCvvInput.value = cardCvvInput.value.replace(/\D/g, "").slice(0, 3);
+    });
+}
 
 function resetAllForms() {
     document.querySelectorAll("form").forEach(form => form.reset());
-    updateCardVisual();
+    if (cardNumberInput && cardVisualNumber && cardVisualBrand) updateCardVisual();
 }
 
 window.addEventListener("pageshow", resetAllForms);
