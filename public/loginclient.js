@@ -1,4 +1,4 @@
-import { signInWithGoogle } from "../src/frontend/dbclient.js";
+import { signInWithGoogle } from "/dbclient.js";
 const localStorage = window.localStorage
 
 function checkToken() {
