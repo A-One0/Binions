@@ -143,13 +143,6 @@ border-color: var(--gold);
 background: rgba(200,162,77,.12);
 }
 
-.avatar{
-width: 30px; height: 30px;
-border-radius: 50%;
-background: conic-gradient(from 200deg, var(--wine-bright), var(--gold), var(--wine-bright));
-border: 2px solid var(--cream);
-}
-
 .user-id span{
 font-size: 14px;
 font-weight: 600;
