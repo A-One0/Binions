@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binion's — Votre table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="table-bg"></div>
+
+  <header>
+    <a class="brand" href="index.html" aria-label="Retour à l'accueil">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div>
+        <div class="brand-name">Binion's</div>
+        <div class="brand-sub">SALON DE POKER</div>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="index.html#Boutique">Boutique</a>
+      <a href="index.html#Account">Mon compte</a>
+    </nav>
+    <div class="user-cluster">
+      <div class="user-id" role="button" tabindex="0" aria-label="Ouvrir Mon compte">
+        <div class="avatar" aria-hidden="true"></div>
+        <span>PokerFace_88</span>
+      </div>
+      <div class="chip-count"><div class="chip-icon" aria-hidden="true"></div>12 480</div>
+    </div>
+  </header>
+
+  <main class="game-section">
+    <div class="page-head">
+      <p class="eyebrow">Salle privée</p>
+      <h1>Votre table est prête</h1>
+      <p class="updated">En attente de joueurs</p>
+    </div>
+
+    <div class="game-layout">
+      <section class="table-panel" aria-label="Table de jeu">
+        <div class="poker-table">
+          <div class="table-center">
+            <span class="table-mode" id="game-mode">Cash Game</span>
+            <strong id="game-stakes">Blindes 25</strong>
+            <span>La partie démarre à 2 joueurs</span>
+          </div>
+          <div class="seat seat-top"><span class="seat-avatar"></span><span>En attente</span></div>
+          <div class="seat seat-right"><span class="seat-avatar"></span><span>En attente</span></div>
+          <div class="seat seat-bottom occupied"><span class="seat-avatar">P</span><span>PokerFace_88</span></div>
+          <div class="seat seat-left"><span class="seat-avatar"></span><span>En attente</span></div>
+        </div>
+      </section>
+
+      <aside class="game-info panel">
+        <div class="panel-head">
+          <h2>Inviter des joueurs</h2>
+          <div class="status"><span class="dot"></span>Table ouverte</div>
+        </div>
+        <p class="game-copy">Partagez le code de cette table pour faire rejoindre vos amis.</p>
+        <div class="room-code" id="room-code" aria-live="polite">------</div>
+        <button type="button" class="save" id="copy-room-code">Copier le code</button>
+        <a class="back-link" href="index.html">Retour au choix de table</a>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <span>BINION'S · ÉTABLI EN 1951 · LA MAISON DU CHAMPIONNAT</span>
+    <a href="conditions.html?from=home">Conditions d'utilisation</a>
+  </footer>
+  <script src="header.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
