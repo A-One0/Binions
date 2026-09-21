@@ -13,7 +13,6 @@ export default defineConfig({
         conditions: resolve(__dirname, 'public/conditions.html'),
         createaccount: resolve(__dirname, 'public/createaccount.html'),
         game: resolve(__dirname, 'public/game.html'),
-        // ajoute chaque page ici
       },
     },
   },
