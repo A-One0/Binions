@@ -6,5 +6,14 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'public/index.html'),
+        login: resolve(__dirname, 'public/login.html'),
+        conditions: resolve(__dirname, 'public/conditions.html'),
+        createaccount: resolve(__dirname, 'public/createaccount.html'),
+        // ajoute chaque page ici
+      },
+    },
   },
 });
