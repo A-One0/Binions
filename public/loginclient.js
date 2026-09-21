@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 import { signInWithGoogle } from "./dbclient.js";
-=======
-import { signInWithGoogle } from "/dbclient.js";
->>>>>>> 6fc40ff496e764405e78ee24d31df188746b96c7
+
 const localStorage = window.localStorage
 
 function checkToken() {
