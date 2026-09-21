@@ -78,8 +78,45 @@
         </div>
     
         <div class="cta-wrap">
-          <a href="#jouer" class="cta">Lancer une partie</a>
+          <a href="#Game" class="cta" id="launch-game">Lancer une partie</a>
           <p class="cta-note">Cash Game sélectionné — modifiable ci-dessus</p>
+        </div>
+      </main>
+    </section>
+
+    <section id="Game" class="game-section">
+      <main>
+        <div class="page-head">
+          <p class="eyebrow">Salle privée</p>
+          <h1>Votre table est prête</h1>
+          <p class="updated" id="game-status">En attente de joueurs</p>
+        </div>
+
+        <div class="game-layout">
+          <section class="table-panel" aria-label="Table de jeu">
+            <div class="poker-table">
+              <div class="table-center">
+                <span class="table-mode" id="game-mode">Cash Game</span>
+                <strong id="game-stakes">Blindes 25</strong>
+                <span>La partie démarre à 2 joueurs</span>
+              </div>
+              <div class="seat seat-top"><span class="seat-avatar"></span><span>En attente</span></div>
+              <div class="seat seat-right"><span class="seat-avatar"></span><span>En attente</span></div>
+              <div class="seat seat-bottom occupied"><span class="seat-avatar">P</span><span>PokerFace_88</span></div>
+              <div class="seat seat-left"><span class="seat-avatar"></span><span>En attente</span></div>
+            </div>
+          </section>
+
+          <aside class="game-info panel">
+            <div class="panel-head">
+              <h2>Inviter des joueurs</h2>
+              <div class="status"><span class="dot"></span>Table ouverte</div>
+            </div>
+            <p class="game-copy">Partagez le code de cette table pour faire rejoindre vos amis.</p>
+            <div class="room-code" id="room-code" aria-live="polite">------</div>
+            <button type="button" class="save" id="copy-room-code">Copier le code</button>
+            <button type="button" class="back-link" id="leave-game">Retour au choix de table</button>
+          </aside>
         </div>
       </main>
     </section>

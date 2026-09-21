@@ -70,6 +70,50 @@ modeCards.forEach(card => {
     });
 });
 
+const launchGame = document.getElementById("launch-game");
+const leaveGame = document.getElementById("leave-game");
+const copyRoomCode = document.getElementById("copy-room-code");
+const roomCode = document.getElementById("room-code");
+
+function createRoomCode() {
+    const randomPart = Math.random().toString(36).slice(2, 8).toUpperCase();
+    return `BIN-${randomPart}`;
+}
+
+function launchSelectedGame(event) {
+    event.preventDefault();
+    const selectedCard = document.querySelector(".mode-card.active");
+    if (!selectedCard || !roomCode) return;
+
+    const mode = selectedCard.querySelector(".mode-name").textContent.trim();
+    const stake = selectedCard.querySelector(".mode-chip").textContent.trim();
+    document.getElementById("game-mode").textContent = mode;
+    document.getElementById("game-stakes").textContent = `Blindes ${stake}`;
+    roomCode.textContent = createRoomCode();
+    window.location.hash = "#Game";
+}
+
+launchGame?.addEventListener("click", launchSelectedGame);
+
+leaveGame?.addEventListener("click", () => {
+    window.location.hash = "#";
+});
+
+copyRoomCode?.addEventListener("click", async () => {
+    if (!roomCode) return;
+    try {
+        await navigator.clipboard.writeText(roomCode.textContent);
+    } catch {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(roomCode);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+    copyRoomCode.textContent = "Code copié";
+    window.setTimeout(() => { copyRoomCode.textContent = "Copier le code"; }, 1600);
+});
+
 // formulaire carte
 const cardNumberInput = document.getElementById("card-number");
 const cardExpirationInput = document.getElementById("card-exp");
