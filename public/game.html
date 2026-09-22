@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rye&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="game-extra.css">
 </head>
 <body>
   <div class="table-bg"></div>
@@ -38,7 +39,7 @@
     <div class="page-head">
       <p class="eyebrow">Salle privée</p>
       <h1>Votre table est prête</h1>
-      <p class="updated">En attente de joueurs</p>
+      <p class="updated" id="game-error" role="alert" hidden></p>
     </div>
 
     <div class="game-layout">
@@ -47,13 +48,24 @@
           <div class="table-center">
             <span class="table-mode" id="game-mode">Cash Game</span>
             <strong id="game-stakes">Blindes 25</strong>
+            <div class="community-cards" id="community-cards" aria-label="Cartes communes"></div>
+            <span class="pot-amount" id="pot-amount">Pot : 0</span>
             <span>La partie démarre à 2 joueurs</span>
           </div>
-          <div class="seat seat-top"><span class="seat-avatar"></span><span>En attente</span></div>
-          <div class="seat seat-right"><span class="seat-avatar"></span><span>En attente</span></div>
-          <div class="seat seat-bottom occupied"><span class="seat-avatar">P</span><span>PokerFace_88</span></div>
-          <div class="seat seat-left"><span class="seat-avatar"></span><span>En attente</span></div>
+          <div class="seat seat-top"><span class="seat-avatar"></span><span class="seat-label">En attente</span></div>
+          <div class="seat seat-right"><span class="seat-avatar"></span><span class="seat-label">En attente</span></div>
+          <div class="seat seat-bottom occupied"><span class="seat-avatar">P</span><span class="seat-label">PokerFace_88</span></div>
+          <div class="seat seat-left"><span class="seat-avatar"></span><span class="seat-label">En attente</span></div>
         </div>
+
+        <div class="action-bar" id="action-bar" hidden>
+          <button type="button" class="action-btn fold" id="fold-btn">Se coucher</button>
+          <button type="button" class="action-btn call" id="call-btn" data-action="check">Check</button>
+          <input type="number" id="raise-input" class="raise-input" step="1" aria-label="Montant de la relance">
+          <button type="button" class="action-btn raise" id="raise-btn">Relancer</button>
+          <button type="button" class="action-btn allin" id="allin-btn">Tapis</button>
+        </div>
+        <button type="button" class="save" id="next-hand-btn" hidden>Lancer la main suivante</button>
       </section>
 
       <aside class="game-info panel">
@@ -74,6 +86,6 @@
     <a href="conditions.html?from=home">Conditions d'utilisation</a>
   </footer>
   <script src="header.js"></script>
-  <script src="game.js"></script>
+  <script type="module" src="game.js"></script>
 </body>
 </html>

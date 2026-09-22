@@ -1,13 +1,14 @@
-// src/client/dbClient.js
+// public/dbClient.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics, isSupported as analyticsIsSupported } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
 import {
   getAuth,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signOut
+  signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -18,11 +19,12 @@ const firebaseConfig = {
   storageBucket: "site-80.firebasestorage.app",
   messagingSenderId: "832197308909",
   appId: "1:832197308909:web:02863bd3d9b1bc502737e4",
-  measurementId: "G-2JKRNQGL2D"
+  measurementId: "G-2JKRNQGL2D",
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const database = getDatabase(app); // NOUVEAU : partagé par game.js pour écouter la table en direct
 const provider = new GoogleAuthProvider();
 
 let analytics = null;
@@ -53,9 +55,12 @@ function getCurrentIdToken() {
 }
 
 export {
+  app,
+  auth,
+  database,
   createUser,
   signInUser,
   signInWithGoogle,
   signOutUser,
-  getCurrentIdToken
+  getCurrentIdToken,
 };

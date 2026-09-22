@@ -1,0 +1,119 @@
+.community-cards {
+  display: flex;
+  gap: 6px;
+  min-height: 64px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pot-amount {
+  color: var(--gold-bright, #e6c576);
+  font-weight: 600;
+}
+
+.seat-cards {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  justify-content: center;
+}
+
+.playing-card {
+  width: 34px;
+  height: 48px;
+  border-radius: 5px;
+  background: var(--cream, #efe4c8);
+  color: var(--ink, #061510);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px var(--shadow, rgba(0,0,0,.55));
+  border: 1px solid var(--gold-dim, #8a723c);
+}
+
+.playing-card.red { color: var(--wine-bright, #a53344); }
+.playing-card.black { color: var(--ink, #061510); }
+
+.playing-card.face-down {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--felt, #103a2a),
+    var(--felt, #103a2a) 4px,
+    var(--felt-light, #175038) 4px,
+    var(--felt-light, #175038) 8px
+  );
+  border-color: var(--gold, #c8a24d);
+}
+
+.seat.turn {
+  outline: 2px solid var(--gold-bright, #e6c576);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+.seat.folded {
+  opacity: 0.45;
+}
+
+.action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.action-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--gold-dim, #8a723c);
+  background: var(--felt-light, #175038);
+  color: var(--cream, #efe4c8);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .1s ease, background .15s ease;
+}
+
+.action-btn:hover { transform: translateY(-1px); }
+
+.action-btn.fold {
+  background: var(--wine, #7a2230);
+  border-color: var(--wine-bright, #a53344);
+}
+
+.action-btn.call {
+  background: var(--green-ok, #4fae74);
+  color: var(--ink, #061510);
+  border-color: var(--green-ok, #4fae74);
+}
+
+.action-btn.raise,
+.action-btn.allin {
+  background: var(--gold, #c8a24d);
+  color: var(--ink, #061510);
+  border-color: var(--gold-bright, #e6c576);
+}
+
+.raise-input {
+  width: 90px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--gold-dim, #8a723c);
+  background: var(--felt-dark, #0a2b1f);
+  color: var(--cream, #efe4c8);
+  text-align: center;
+}
+
+#next-hand-btn {
+  display: block;
+  margin: 18px auto 0;
+}
+
+#game-error:not([hidden]) {
+  color: var(--wine-bright, #a53344);
+  font-weight: 600;
+}
