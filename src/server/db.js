@@ -5,7 +5,7 @@ console.log("FIREBASE_SERVICE_ACCOUNT:", process.env.FIREBASE_SERVICE_ACCOUNT);
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(
-      JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+      process.env.FIREBASE_SERVICE_ACCOUNT
     ),
     databaseURL: "https://site-80-default-rtdb.europe-west1.firebasedatabase.app"
   });
