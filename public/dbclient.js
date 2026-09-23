@@ -1,7 +1,6 @@
 // public/dbClient.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics, isSupported as analyticsIsSupported } from "firebase/analytics";
-import { getDatabase } from "firebase/database";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -24,7 +23,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const database = getDatabase(app); // NOUVEAU : partagé par game.js pour écouter la table en direct
 const provider = new GoogleAuthProvider();
 
 let analytics = null;
@@ -57,7 +55,6 @@ function getCurrentIdToken() {
 export {
   app,
   auth,
-  database,
   createUser,
   signInUser,
   signInWithGoogle,
