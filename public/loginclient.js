@@ -7,7 +7,7 @@ const googleButton = document.querySelector(".google-btn");
 googleButton?.addEventListener("click", async function(event) {
   event.preventDefault();
   const { user } = await signInWithGoogle();
-  window.location.href = 'index.html';
+  //window.location.href = 'index.html';
 
   const response = await fetch("/api/loginwithgoogle", {
     method: "POST",
