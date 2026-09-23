@@ -1,5 +1,5 @@
-// public/game.js
-import { auth, getCurrentIdToken } from "./dbclient.js";
+import { database, auth, getCurrentIdToken } from "./dbclient.js";
+import { ref, onValue } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 
 const params = new URLSearchParams(window.location.search);
@@ -240,18 +240,7 @@ document.getElementById("raise-btn")?.addEventListener("click", () => {
 document.getElementById("allin-btn")?.addEventListener("click", () => callPoker("allin"));
 document.getElementById("next-hand-btn")?.addEventListener("click", () => callPoker("next-hand"));
 
-// --- Démarrage : auth -> join -> polling régulier de l'état ---
-const POLL_INTERVAL_MS = 1500;
-let pollTimer = null;
-
-function startPolling() {
-  if (pollTimer) return;
-  pollTimer = window.setInterval(async () => {
-    const state = await callPoker("state");
-    if (state) renderState(state);
-  }, POLL_INTERVAL_MS);
-}
-
+// --- Démarrage : auth -> join -> écoute temps réel ---
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "login.html";
@@ -274,6 +263,7 @@ document.addEventListener("visibilitychange", () => {
     startPolling();
   }
 });
+*/
 
 window.addEventListener("beforeunload", () => {
   // best effort ; sendBeacon ne peut pas facilement porter du JSON+idToken async ici,
