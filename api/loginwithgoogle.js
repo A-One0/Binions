@@ -3,7 +3,7 @@ const createToken = require("../src/server/userfind/createtoken.js");
 const config = require("../src/server/config.json");
 
 export default async function handler(req, res) {
-  const { user, name } = JSON.parse(req.body);
+  const { user, name } = req.body;
 
   const token = createToken();
 
