@@ -1,6 +1,6 @@
-const { createDocument } = require("../src/server/db.js");
-const createToken = require("../src/server/userfind/createtoken.js");
-const config = require("../src/server/config.json");
+import { createDocument } from "../src/server/db.js";
+import { createToken } from "../src/server/userfind/createtoken.js";
+import config from "../src/server/config.json" assert { type: "json" };
 
 export default async function handler(req, res) {
   const { user, name } = req.body;
