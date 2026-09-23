@@ -1,8 +1,7 @@
-// src/server/db.js
 import admin from "firebase-admin";
 
-// Initialise firebase-admin une seule fois (évite les ré-initialisations
-// à chaque invocation à froid de la fonction)
+console.log("FIREBASE_SERVICE_ACCOUNT:", process.env.FIREBASE_SERVICE_ACCOUNT);
+
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(
@@ -15,10 +14,6 @@ if (!admin.apps.length) {
 const db = admin.database();
 const auth = admin.auth();
 
-// --- Auth : vérification de token (remplace signInWithGoogle côté serveur) ---
-
-// Le client s'authentifie lui-même avec Firebase Auth (signInWithPopup côté navigateur),
-// puis envoie son idToken à la fonction Netlify, qui appelle ceci pour le vérifier.
 function verifyIdToken(idToken) {
   return auth.verifyIdToken(idToken);
 }
