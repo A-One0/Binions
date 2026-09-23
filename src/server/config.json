@@ -2,7 +2,7 @@
     "dbCollectionPlayer" : "plrAccounts",
     "plrNull" : {
         "methodConnexion" : "null",
-        "token" : "null",
+        "actualtoken" : "null",
         "username" : "null",
         "avatar" : "null",
         "level" : 0,

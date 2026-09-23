@@ -1,7 +1,6 @@
-const {readDocument, createDocument} = require("../db.js")
-
+const { readCollection} = require("../db.js")
 
 export function getuserbytoken(token){
-    const user = readDocument(config.dbCollectionPlayer, token);
+    const user = readCollection(config.dbCollectionPlayer, { actualtoken: token });
     return user;
 }

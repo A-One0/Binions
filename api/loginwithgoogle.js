@@ -1,7 +1,19 @@
-const { signInWithGoogle } = require("../src/server/db.js");
+const { createDocument } = require("../src/server/db.js");
+const createToken = require("../src/server/userfind/createtoken.js");
+const config = require("../src/server/config.json");
 
 export default async function handler(req, res) {
-  const plr = await signInWithGoogle();
+  const { user, name } = JSON.parse(req.body);
+
+  const token = createToken();
+
+
+  const data = config.plrNull;
+  data.methodConnexion = "google";
+  data.username = name 
+  data.actualtoken = token;
+
+  await createDocument(config.dbCollectionPlayer, user.uid, data);
     
-   res.status(200).json(data);
+   res.status(200).json(token);
 }
