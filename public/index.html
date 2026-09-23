@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rye&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="boutique.css">
 </head>
 <body>
  
@@ -80,6 +81,24 @@
         <div class="cta-wrap">
           <a href="game.html" class="cta" id="launch-game">Lancer une partie</a>
           <p class="cta-note">Cash Game sélectionné — modifiable ci-dessus</p>
+        </div>
+      </main>
+    </section>
+
+    <section id="Boutique" class="boutique-section">
+      <main>
+        <div class="page-head">
+          <h1>Boutique de jetons</h1>
+          <p class="updated" id="boutique-message" role="status" hidden></p>
+        </div>
+
+        <p class="game-copy">
+          Les jetons servent uniquement à jouer sur Binion's — ils n'ont aucune valeur
+          monétaire réelle et ne peuvent pas être retirés ou échangés.
+        </p>
+
+        <div class="boutique-grid" id="boutique-grid">
+          <!-- Les offres sont injectées par boutique.js à partir de packages.json (source de vérité côté serveur) -->
         </div>
       </main>
     </section>
@@ -195,5 +214,6 @@
   </footer>
   <script type="module" src="header.js"></script>
   <script type="module" src="script.js"></script>
+  <script type="module" src="boutique.js"></script>
 </body>
 </html>

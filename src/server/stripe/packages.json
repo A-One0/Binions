@@ -1,0 +1,35 @@
+{
+  "packages": [
+    {
+      "id": "starter",
+      "label": "Starter",
+      "jetons": 5000,
+      "priceDisplay": "4,99 €",
+      "stripePriceId": "price_XXXXXXXXXXXXXX"
+    },
+    {
+      "id": "pro",
+      "label": "Pro",
+      "jetons": 15000,
+      "bonusJetons": 1500,
+      "priceDisplay": "9,99 €",
+      "stripePriceId": "price_XXXXXXXXXXXXXX"
+    },
+    {
+      "id": "highroller",
+      "label": "High Roller",
+      "jetons": 50000,
+      "bonusJetons": 7500,
+      "priceDisplay": "24,99 €",
+      "stripePriceId": "price_XXXXXXXXXXXXXX"
+    },
+    {
+      "id": "vip",
+      "label": "VIP",
+      "jetons": 150000,
+      "bonusJetons": 30000,
+      "priceDisplay": "59,99 €",
+      "stripePriceId": "price_XXXXXXXXXXXXXX"
+    }
+  ]
+}
