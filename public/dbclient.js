@@ -11,14 +11,14 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6DgCAyNNSjDkHRnvbl9-l-cmI9-ha9Yk",
-  authDomain: "site-80.firebaseapp.com",
-  databaseURL: "https://site-80-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "site-80",
-  storageBucket: "site-80.firebasestorage.app",
-  messagingSenderId: "832197308909",
-  appId: "1:832197308909:web:02863bd3d9b1bc502737e4",
-  measurementId: "G-2JKRNQGL2D",
+  apiKey: "AIzaSyC9B405TkvTXdfkvtrK7n0z-fWuMtVI-zE",
+  authDomain: "binions-2ec94.firebaseapp.com",
+  databaseURL: "https://binions-2ec94-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "binions-2ec94",
+  storageBucket: "binions-2ec94.firebasestorage.app",
+  messagingSenderId: "974246345035",
+  appId: "1:974246345035:web:75793a06b4f97ddb9d10ce",
+  measurementId: "G-F935SLX99T"
 };
 
 const app = initializeApp(firebaseConfig);
