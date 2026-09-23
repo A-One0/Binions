@@ -1,3 +1,5 @@
+// api/poker.js
+//
 // Route Vercel (format `export default function handler(req, res)`).
 // Le client envoie son idToken Firebase à chaque appel ; on le vérifie
 // côté serveur avec firebase-admin (comme le ferait getuserbytoken.js),
@@ -7,6 +9,7 @@ import path from "node:path";
 import { verifyIdToken, readDocument } from "../src/server/db.js";
 import {
   handleJoin,
+  handleState,
   handleNextHand,
   handleGameAction,
   handleLeave,
@@ -46,7 +49,7 @@ export default async function handler(req, res) {
   const uid = decoded.uid;
 
   try {
-    let publicState;
+    let result;
 
     if (action === "join") {
       const account = await readDocument(config.dbCollectionPlayer, uid);
@@ -59,19 +62,21 @@ export default async function handler(req, res) {
       // buy-in à 0 qui bloquerait la table (à ajuster selon vos règles de mise).
       const buyIn = account && account.jetons > 0 ? Math.min(account.jetons, 5000) : DEFAULT_BUY_IN;
 
-      publicState = await handleJoin(tableId, uid, { username, stake, mode, buyIn });
+      result = await handleJoin(tableId, uid, { username, stake, mode, buyIn });
+    } else if (action === "state") {
+      result = await handleState(tableId, uid);
     } else if (action === "next-hand") {
-      publicState = await handleNextHand(tableId, uid);
+      result = await handleNextHand(tableId, uid);
     } else if (action === "leave") {
-      publicState = await handleLeave(tableId, uid);
+      result = await handleLeave(tableId, uid);
     } else if (GAME_ACTIONS.has(action)) {
-      publicState = await handleGameAction(tableId, uid, action, Number(amount) || 0);
+      result = await handleGameAction(tableId, uid, action, Number(amount) || 0);
     } else {
       res.status(400).json({ error: "Action inconnue" });
       return;
     }
 
-    res.status(200).json({ ok: true, state: publicState });
+    res.status(200).json({ ok: true, ...result });
   } catch (err) {
     console.error("poker action error:", err);
     res.status(400).json({ error: err.message || "Erreur serveur" });

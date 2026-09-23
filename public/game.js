@@ -1,5 +1,5 @@
-import { database, auth, getCurrentIdToken } from "./dbclient.js";
-import { ref, onValue } from "firebase/database";
+// public/game.js
+import { auth, getCurrentIdToken } from "./dbclient.js";
 import { onAuthStateChanged } from "firebase/auth";
 
 const params = new URLSearchParams(window.location.search);
@@ -66,7 +66,8 @@ async function callPoker(action, extra = {}) {
     showError(data.error || "Erreur");
     return null;
   }
-  return data.state;
+  if (data.holeCards) myHoleCards = data.holeCards;
+  return data.publicState;
 }
 
 function showError(message) {
@@ -239,7 +240,18 @@ document.getElementById("raise-btn")?.addEventListener("click", () => {
 document.getElementById("allin-btn")?.addEventListener("click", () => callPoker("allin"));
 document.getElementById("next-hand-btn")?.addEventListener("click", () => callPoker("next-hand"));
 
-// --- Démarrage : auth -> join -> écoute temps réel ---
+// --- Démarrage : auth -> join -> polling régulier de l'état ---
+const POLL_INTERVAL_MS = 1500;
+let pollTimer = null;
+
+function startPolling() {
+  if (pollTimer) return;
+  pollTimer = window.setInterval(async () => {
+    const state = await callPoker("state");
+    if (state) renderState(state);
+  }, POLL_INTERVAL_MS);
+}
+
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "login.html";
@@ -250,15 +262,17 @@ onAuthStateChanged(auth, async (user) => {
   const state = await callPoker("join", { stake, mode });
   if (state) renderState(state);
 
-  onValue(ref(database, `pokerTables/${tableId}/public`), (snap) => {
-    const val = snap.val();
-    if (val) renderState(val);
-  });
+  startPolling();
+});
 
-  onValue(ref(database, `pokerTables/${tableId}/holeCards/${myUid}`), (snap) => {
-    myHoleCards = snap.val() || [];
-    if (latestPublicState) renderState(latestPublicState);
-  });
+document.addEventListener("visibilitychange", () => {
+  // On évite d'interroger le serveur pour rien quand l'onglet est en arrière-plan.
+  if (document.hidden && pollTimer) {
+    window.clearInterval(pollTimer);
+    pollTimer = null;
+  } else if (!document.hidden && myUid) {
+    startPolling();
+  }
 });
 
 window.addEventListener("beforeunload", () => {

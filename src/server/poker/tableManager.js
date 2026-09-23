@@ -1,3 +1,5 @@
+// src/server/poker/tableManager.js
+//
 // Fait le pont entre le moteur pur (pokerEngine.js) et Firebase (db.js).
 // C'est ici qu'on lit/écrit la base : le moteur lui-même ne connaît pas Firebase.
 //
@@ -25,19 +27,14 @@ async function readEngine(tableId) {
   return readDocument(ENGINE_COLLECTION(tableId), "engine");
 }
 
-async function persist(state) {
+async function persist(state, uid) {
   const tableId = state.tableId;
   await createDocument(ENGINE_COLLECTION(tableId), "engine", state);
-  await createDocument(ENGINE_COLLECTION(tableId), "public", derivePublicState(state));
 
-  const writes = state.seats
-    .filter((s) => s)
-    .map((s) =>
-      createDocument(`pokerTables/${tableId}/holeCards`, s.uid, s.holeCards || [])
-    );
-  await Promise.all(writes);
-
-  return derivePublicState(state);
+  return {
+    publicState: derivePublicState(state),
+    holeCards: deriveHoleCards(state, uid),
+  };
 }
 
 export async function handleJoin(tableId, uid, { username, stake, mode, buyIn }) {
@@ -53,7 +50,13 @@ export async function handleJoin(tableId, uid, { username, stake, mode, buyIn })
     state = startHand(state);
   }
 
-  return persist(state);
+  return persist(state, uid);
+}
+
+export async function handleState(tableId, uid) {
+  const state = await readEngine(tableId);
+  if (!state) throw new Error("Table introuvable");
+  return { publicState: derivePublicState(state), holeCards: deriveHoleCards(state, uid) };
 }
 
 export async function handleNextHand(tableId, uid) {
@@ -63,7 +66,7 @@ export async function handleNextHand(tableId, uid) {
   if (state.status === "playing") throw new Error("Une main est déjà en cours");
 
   state = startHand(state);
-  return persist(state);
+  return persist(state, uid);
 }
 
 export async function handleGameAction(tableId, uid, action, amount) {
@@ -71,7 +74,7 @@ export async function handleGameAction(tableId, uid, action, amount) {
   if (!state) throw new Error("Table introuvable");
 
   state = applyAction(state, uid, action, amount);
-  return persist(state);
+  return persist(state, uid);
 }
 
 export async function handleLeave(tableId, uid) {
@@ -79,7 +82,7 @@ export async function handleLeave(tableId, uid) {
   if (!state) return null;
   const seats = state.seats.map((s) => (s && s.uid === uid ? null : s));
   state = { ...state, seats };
-  return persist(state);
+  return persist(state, uid);
 }
 
 export { MAX_SEATS };
