@@ -9,6 +9,8 @@ googleButton?.addEventListener("click", async function(event) {
   const { user } = await signInWithGoogle();
   //window.location.href = 'index.html';
 
+  console.log("User signed in with Google:", user);
+
   const response = await fetch("/api/loginwithgoogle", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
