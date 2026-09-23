@@ -43,16 +43,26 @@ export default async function handler(req, res) {
 
   try {
     const origin = req.headers.origin || `https://${req.headers.host}`;
-    const session = await stripe.checkout.sessions.create({
-      mode: "payment",
+    const mode = pack.mode || "payment";
+
+    const sessionParams = {
+      mode,
       payment_method_types: ["card"],
       line_items: [{ price: pack.stripePriceId, quantity: 1 }],
-      // On rattache l'achat au joueur ici : le webhook n'a besoin de rien
-      // d'autre pour créditer le bon compte.
-      metadata: { uid: decoded.uid, packageId: pack.id },
       success_url: `${origin}/index.html?boutique=success#Boutique`,
       cancel_url: `${origin}/index.html?boutique=cancel#Boutique`,
-    });
+    };
+
+    if (mode === "subscription") {
+      // L'événement de renouvellement (invoice.payment_succeeded) n'a pas accès
+      // aux métadonnées de la session, seulement à celles de l'abonnement :
+      // on les pose donc ici plutôt que sur `metadata` au niveau session.
+      sessionParams.subscription_data = { metadata: { uid: decoded.uid, packageId: pack.id } };
+    } else {
+      sessionParams.metadata = { uid: decoded.uid, packageId: pack.id };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     res.status(200).json({ url: session.url });
   } catch (err) {

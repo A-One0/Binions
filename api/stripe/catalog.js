@@ -11,12 +11,13 @@ const { packages } = JSON.parse(
 );
 
 export default async function handler(req, res) {
-  const publicCatalog = packages.map(({ id, label, jetons, bonusJetons, priceDisplay }) => ({
+  const publicCatalog = packages.map(({ id, label, jetons, bonusJetons, priceDisplay, mode }) => ({
     id,
     label,
     jetons,
     bonusJetons: bonusJetons || 0,
     priceDisplay,
+    mode: mode || "payment",
   }));
   res.status(200).json({ packages: publicCatalog });
 }

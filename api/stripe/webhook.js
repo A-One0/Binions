@@ -53,6 +53,15 @@ export default async function handler(req, res) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
+
+    // Les abonnements sont crédités via invoice.payment_succeeded (ça couvre
+    // aussi bien le premier prélèvement que les renouvellements) : on évite
+    // ici de créditer une deuxième fois le même mois.
+    if (session.mode === "subscription") {
+      res.status(200).json({ received: true });
+      return;
+    }
+
     const { uid, packageId } = session.metadata || {};
     const pack = packages.find((p) => p.id === packageId);
 
@@ -62,21 +71,46 @@ export default async function handler(req, res) {
       return;
     }
 
-    const alreadyProcessed = await readDocument("stripeProcessedSessions", session.id).catch(() => null);
-    if (!alreadyProcessed) {
-      const account = (await readDocument(siteConfig.dbCollectionPlayer, uid).catch(() => null)) || siteConfig.plrNull;
-      const totalJetons = pack.jetons + (pack.bonusJetons || 0);
-      const newBalance = (account.jetons || 0) + totalJetons;
-
-      await updateDocument(siteConfig.dbCollectionPlayer, uid, { jetons: newBalance });
-      await createDocument("stripeProcessedSessions", session.id, {
-        uid,
-        packageId: pack.id,
-        jetons: totalJetons,
-        processedAt: Date.now(),
-      });
+    await creditJetonsOnce("stripeProcessedSessions", session.id, uid, pack);
+  } else if (event.type === "invoice.payment_succeeded") {
+    const invoice = event.data.object;
+    const subscriptionId = invoice.subscription;
+    if (!subscriptionId) {
+      res.status(200).json({ received: true });
+      return;
     }
+
+    const subscription = await stripe.subscriptions.retrieve(subscriptionId).catch(() => null);
+    const { uid, packageId } = subscription?.metadata || {};
+    const pack = packages.find((p) => p.id === packageId);
+
+    if (!uid || !pack) {
+      console.error("Abonnement Stripe sans métadonnées valides:", subscriptionId);
+      res.status(200).json({ received: true });
+      return;
+    }
+
+    // Un id de facture est unique par prélèvement (premier mois inclus), donc
+    // ça sert aussi bien à cadencer les renouvellements qu'à éviter les doublons.
+    await creditJetonsOnce("stripeProcessedInvoices", invoice.id, uid, pack);
   }
 
   res.status(200).json({ received: true });
+}
+
+async function creditJetonsOnce(ledgerCollection, ledgerId, uid, pack) {
+  const alreadyProcessed = await readDocument(ledgerCollection, ledgerId).catch(() => null);
+  if (alreadyProcessed) return;
+
+  const account = (await readDocument(siteConfig.dbCollectionPlayer, uid).catch(() => null)) || siteConfig.plrNull;
+  const totalJetons = pack.jetons + (pack.bonusJetons || 0);
+  const newBalance = (account.jetons || 0) + totalJetons;
+
+  await updateDocument(siteConfig.dbCollectionPlayer, uid, { jetons: newBalance });
+  await createDocument(ledgerCollection, ledgerId, {
+    uid,
+    packageId: pack.id,
+    jetons: totalJetons,
+    processedAt: Date.now(),
+  });
 }

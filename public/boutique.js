@@ -29,11 +29,14 @@ function renderPackages(packages) {
       <div class="panel-head">
         <h2>${pack.label}</h2>
       </div>
-      <p class="boutique-jetons">${pack.jetons.toLocaleString("fr-FR")} jetons${
-      pack.bonusJetons ? ` <span class="boutique-bonus">+${pack.bonusJetons.toLocaleString("fr-FR")} bonus</span>` : ""
-    }</p>
-      <p class="boutique-price">${pack.priceDisplay}</p>
-      <button type="button" class="save buy-btn" data-package="${pack.id}">Acheter</button>
+      <p class="boutique-jetons">${pack.jetons.toLocaleString("fr-FR")} jetons</p>
+      <p class="boutique-bonus">${
+        pack.bonusJetons ? `+${pack.bonusJetons.toLocaleString("fr-FR")} bonus` : "\u00A0"
+      }</p>
+      <p class="boutique-price">${pack.priceDisplay}${pack.mode === "subscription" ? "<span class=\"boutique-interval\">/mois</span>" : ""}</p>
+      <button type="button" class="save buy-btn" data-package="${pack.id}">${
+        pack.mode === "subscription" ? "S'abonner" : "Acheter"
+      }</button>
     `;
     grid.appendChild(card);
   });

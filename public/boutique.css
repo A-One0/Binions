@@ -24,9 +24,16 @@
 
 .boutique-bonus {
   display: block;
+  min-height: 1.1em;
   font-size: 0.85rem;
   color: var(--gold-bright, #e6c576);
   font-weight: 600;
+}
+
+.boutique-interval {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--cream-dim, #cdbf9c);
 }
 
 .boutique-price {

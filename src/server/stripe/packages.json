@@ -5,6 +5,7 @@
       "label": "Starter",
       "jetons": 5000,
       "priceDisplay": "4,99 €",
+      "mode": "payment",
       "stripePriceId": "price_XXXXXXXXXXXXXX"
     },
     {
@@ -13,6 +14,7 @@
       "jetons": 15000,
       "bonusJetons": 1500,
       "priceDisplay": "9,99 €",
+      "mode": "payment",
       "stripePriceId": "price_XXXXXXXXXXXXXX"
     },
     {
@@ -21,6 +23,7 @@
       "jetons": 50000,
       "bonusJetons": 7500,
       "priceDisplay": "24,99 €",
+      "mode": "payment",
       "stripePriceId": "price_XXXXXXXXXXXXXX"
     },
     {
@@ -28,7 +31,9 @@
       "label": "VIP",
       "jetons": 150000,
       "bonusJetons": 30000,
-      "priceDisplay": "59,99 €",
+      "priceDisplay": "15,00 €",
+      "mode": "subscription",
+      "interval": "month",
       "stripePriceId": "price_XXXXXXXXXXXXXX"
     }
   ]

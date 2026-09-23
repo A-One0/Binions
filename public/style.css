@@ -25,6 +25,8 @@ color: var(--cream);
 font-family: 'Inter', sans-serif;
 min-height: 100vh;
 overflow-x: hidden;
+display: flex;
+flex-direction: column;
 }
 
 /* felt texture background */
@@ -338,6 +340,7 @@ text-align: center;
 padding: 28px 40px 36px;
 border-top: 1px solid rgba(200,162,77,.2);
 font-size: 12px;
+margin-top: auto;
 color: var(--gold-dim);
 letter-spacing: 1px;
 }
