@@ -1,4 +1,4 @@
-import { database, auth, getCurrentIdToken } from "./dbclient.js";
+import {getCurrentIdToken } from "./dbclient.js";
 import { ref, onValue } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -240,6 +240,8 @@ document.getElementById("allin-btn")?.addEventListener("click", () => callPoker(
 document.getElementById("next-hand-btn")?.addEventListener("click", () => callPoker("next-hand"));
 
 // --- Démarrage : auth -> join -> écoute temps réel ---
+
+/*
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "login.html";
@@ -260,6 +262,7 @@ onAuthStateChanged(auth, async (user) => {
     if (latestPublicState) renderState(latestPublicState);
   });
 });
+*/
 
 window.addEventListener("beforeunload", () => {
   // best effort ; sendBeacon ne peut pas facilement porter du JSON+idToken async ici,
